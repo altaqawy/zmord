@@ -6,216 +6,32 @@
   <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
   <meta name="theme-color" content="#fff8f6" />
-  <title>ZMORD Cake — Light Theme Test</title>
+  <meta name="msapplication-navbutton-color" content="#fff8f6" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="description" content="ZMORD Cake — luxury cake boutique landing page with WhatsApp ordering." />
+  <title>ZMORD Cake — Sweet Moments</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      color-scheme: only light;
-      --rose:#d56f89;
-      --rose-dark:#9f4863;
-      --rose-soft:#f5d9df;
-      --cream:#fff8f6;
-      --ivory:#fffdfb;
-      --text:#2f2727;
-      --muted:#7d6c6f;
-      --line:rgba(154,82,101,.18);
-      --shadow:0 24px 70px rgba(132,58,78,.16);
-    }
-
-    *{box-sizing:border-box;forced-color-adjust:none}
-    html{scroll-behavior:smooth;color-scheme:only light;background:#fff8f6!important}
-    body{
-      margin:0;
-      background:#fff8f6!important;
-      font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,sans-serif;
-      color:#2f2727!important;
-      color-scheme:only light;
-      -webkit-text-size-adjust:100%;
-    }
-
-    img,svg,video,canvas{filter:none!important;mix-blend-mode:normal}
-    input,textarea,select,button{color-scheme:only light!important}
-    a{text-decoration:none;color:inherit}
-    button{font:inherit}
-    img{max-width:100%;display:block}
-
-    .page-shell{width:100%;max-width:none;margin:0;background:#fff8f6!important;min-height:100vh;overflow:hidden;box-shadow:none;color:#2f2727!important}
-
-    .hero{position:relative;min-height:690px;overflow:hidden;padding:22px clamp(32px,5vw,92px) 30px;background:linear-gradient(90deg,#fff9f7 0%,#fff6f4 48%,#f7cdd3 100%)!important}
-    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.86;z-index:0;filter:none!important;mix-blend-mode:normal!important}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,248,.93),rgba(255,248,246,.66) 46%,rgba(246,204,211,.30))!important;z-index:1}
-    .navbar,.hero-content,.trust-row{position:relative;z-index:4}
-    .navbar{height:82px;display:flex;align-items:center;gap:26px}
-    .brand{width:205px;display:block;position:relative;z-index:5}
-    .brand img{width:100%;height:auto;background:transparent}
-    .nav-links{display:flex;align-items:center;gap:30px;margin-inline:auto;font-weight:600;color:#342d2d;font-size:15px}
-    .nav-links a{position:relative;padding:12px 0;color:#342d2d!important}
-    .nav-links a.active,.nav-links a:hover{color:var(--rose)!important}
-    .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:var(--rose)}
-    .nav-actions{display:flex;align-items:center;gap:16px}
-    .icon-btn{width:40px;height:40px;border:0;background:transparent;position:relative;display:grid;place-items:center;cursor:pointer}
-    .icon-btn svg{width:26px;height:26px;fill:none;stroke:#282322;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .cart span{position:absolute;right:-3px;top:0;width:20px;height:20px;background:var(--rose);color:white;border-radius:50%;font-size:12px;display:grid;place-items:center}
-    .whatsapp-nav,.btn.primary{background:linear-gradient(135deg,var(--rose),#d66f88);color:white!important;border:0;border-radius:999px;padding:13px 24px;font-weight:700;letter-spacing:.01em;box-shadow:0 12px 25px rgba(201,95,123,.18)}
-    .menu-btn{display:none;border:0;background:transparent;font-size:26px;color:var(--text)}
-
-    .hero-content{display:grid;grid-template-columns:minmax(390px,38%) minmax(620px,62%);align-items:center;min-height:455px;gap:18px}
-    .hero-copy{padding-top:10px;position:relative;z-index:4;max-width:620px}
-    .eyebrow{font-size:12px;letter-spacing:.32em;font-weight:700;color:#2b2526!important;margin:0 0 18px;text-transform:uppercase}
-    .eyebrow span{color:var(--rose);letter-spacing:0}
-    .hero h1{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(58px,4.15vw,76px);line-height:.94;font-weight:500;text-transform:uppercase;letter-spacing:.01em;margin:0;color:#302829!important;max-width:560px}
-    .hero h1 span{display:block;color:var(--rose)!important}
-    .subtext{font-size:16px;line-height:1.65;color:#44393b!important;max-width:455px;margin:22px 0 24px}
-    .hero-buttons{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:13px 26px;font-weight:700;min-width:170px;font-size:14px}
-    .btn.primary::before{content:"◌";font-size:20px}
-    .btn.ghost{border:1px solid var(--rose);color:var(--rose)!important;background:rgba(255,255,255,.5)}
-
-    .hero-stage{position:relative;min-height:450px;display:grid;place-items:center;z-index:4}
-    .cake-img{position:relative;width:min(660px,86%);filter:drop-shadow(0 32px 36px rgba(141,57,80,.22))!important;z-index:2;animation:floatCake 6s ease-in-out infinite}
-    .light-ring{position:absolute;width:min(515px,42vw);aspect-ratio:1;border:7px solid rgba(255,255,255,.86);border-radius:50%;box-shadow:0 0 30px rgba(255,255,255,.9),0 0 45px rgba(215,111,137,.45);transform:translateY(-12%);opacity:.82}
-
-    .trust-row{display:flex;gap:34px;margin-top:0}
-    .trust-row article{display:grid;grid-template-columns:46px auto;column-gap:14px;align-items:center}
-    .trust-row span{grid-row:1/3;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(201,95,123,.11);color:var(--rose);font-size:22px}
-    .trust-row strong{font-size:13px;color:#2f2727!important}
-    .trust-row small{color:var(--muted);font-size:12px}
-
-    .section{padding:68px clamp(32px,5vw,92px);background:#fff8f6!important}
-    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px;gap:20px}
-    .section h2{font-family:"Bodoni Moda",Georgia,serif;font-size:38px;margin:0;color:#3c3032!important;font-weight:500}
-    .text-link{font-weight:700;color:var(--rose)!important}
-    .product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
-    .product-card{position:relative;background:rgba(255,255,255,.78)!important;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(116,52,68,.06);transition:.35s;color:#2f2727!important}
-    .product-card.bestseller::before{content:"Bestseller";position:absolute;top:0;left:0;background:var(--rose);color:white;padding:7px 14px;border-radius:0 0 12px 0;font-size:12px;font-weight:700;z-index:2}
-    .product-card img{width:100%;height:230px;object-fit:cover;background:#fff}
-    .product-info{position:relative;padding:18px}
-    .product-info h3{margin:0 0 10px;font-size:16px;color:#2f2727!important}
-    .product-info p{margin:0 0 12px;color:#c5821c}
-    .product-info p span{color:#8b7d7f}
-    .product-info strong{font-size:18px;color:#2f2727!important}
-    .product-info button{position:absolute;right:16px;bottom:16px;width:44px;height:36px;border:0;border-radius:12px;background:var(--rose);color:white;cursor:pointer}
-
-    .center{text-align:center}
-    .occasion-section{padding-top:18px}
-    .occasion-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
-    .occasion-grid a{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 14px;background:rgba(255,255,255,.58)!important;border:1px solid var(--line);border-radius:24px;color:#493d3f!important;font-weight:700}
-    .occasion-grid a:first-letter{font-size:30px}
-
-    .custom-banner{margin:22px clamp(32px,5vw,92px) 54px;border-radius:24px;min-height:210px;display:grid;grid-template-columns:1fr 420px;align-items:center;overflow:hidden;background:linear-gradient(100deg,#bf5f78,#e68fa2)!important;color:white!important;box-shadow:var(--shadow)}
-    .custom-banner>div{padding:42px 56px}
-    .custom-banner p{margin:0 0 5px;font-family:"Bodoni Moda",serif;font-size:22px}
-    .custom-banner h2{margin:0 0 14px;text-transform:uppercase;font-family:"Bodoni Moda",serif;font-size:44px;letter-spacing:.1em}
-    .custom-banner span{display:block;max-width:500px;line-height:1.7;margin-bottom:20px}
-    .custom-banner img{width:100%;height:100%;object-fit:cover;opacity:.86}
-
-    .testimonial{max-width:980px;margin:0 auto 40px;padding:34px 44px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.62)!important;display:grid;grid-template-columns:60px 1fr auto;gap:18px;align-items:center;color:#2f2727!important}
-    .quote{font-family:"Bodoni Moda",serif;font-size:76px;color:var(--rose);line-height:.8}
-    .testimonial p{margin:0;font-size:18px;line-height:1.6}
-    .rating{color:#d8911d}
-
-    .footer{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:42px;background:#bf6f83!important;color:white!important;padding:48px 92px 36px}
-    .footer img{width:150px}
-    .footer p{max-width:280px;line-height:1.7;color:rgba(255,255,255,.84)!important}
-    .footer h4{letter-spacing:.18em;text-transform:uppercase;font-size:13px}
-    .footer a{display:block;color:rgba(255,255,255,.86)!important;margin:10px 0}
-
-    .floating-butterfly-whatsapp{position:fixed;right:34px;bottom:34px;width:128px;height:112px;z-index:30;display:grid;place-items:center;text-decoration:none;isolation:isolate;cursor:pointer;filter:drop-shadow(0 18px 26px rgba(156,61,86,.22))!important}
-    .butterfly-svg{width:118px;height:98px;overflow:visible}
-
-    @keyframes floatCake{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-
-    @media (prefers-color-scheme: dark){
-      :root,html,body{color-scheme:only light!important;background:#fff8f6!important;color:#2f2727!important}
-      .page-shell{background:#fff8f6!important;color:#2f2727!important}
-      .hero{background:linear-gradient(90deg,#fff9f7 0%,#fff6f4 48%,#f7cdd3 100%)!important}
-      .product-card,.occasion-grid a,.testimonial{background:rgba(255,255,255,.78)!important;color:#2f2727!important}
-      .custom-banner{background:linear-gradient(100deg,#bf5f78,#e68fa2)!important;color:white!important}
-      .footer{background:#bf6f83!important;color:white!important}
-    }
-
-    @media(max-width:720px){
-      html,body{width:100%;max-width:100%;overflow-x:hidden;background:#fff8f6!important;color:#2f2727!important}
-      .page-shell{width:100%;max-width:100%;overflow:hidden;background:#fff8f6!important}
-      .hero{min-height:auto!important;padding:10px 14px 28px!important;background:linear-gradient(180deg,#fff9f7 0%,#fff6f4 54%,#f7cdd3 100%)!important}
-      .hero-bg{object-position:center center!important;opacity:.74!important;filter:none!important;mix-blend-mode:normal!important}
-      .hero::after{background:linear-gradient(180deg,rgba(255,250,248,.95),rgba(255,248,246,.78) 45%,rgba(246,204,211,.30))!important}
-      .navbar{height:64px!important;gap:10px!important;align-items:center}
-      .brand{width:128px!important;flex:0 0 auto;margin:0!important}
-      .nav-links{display:none!important}
-      .nav-actions{margin-inline-start:auto;gap:4px!important}
-      .whatsapp-nav,.hide-sm{display:none!important}
-      .icon-btn{width:30px!important;height:30px!important}
-      .icon-btn svg{width:22px!important;height:22px!important}
-      .cart span{width:16px!important;height:16px!important;font-size:10px!important;right:-2px!important;top:0!important}
-      .menu-btn{display:block!important;font-size:23px!important;padding:0 2px!important}
-      .hero-content{display:block!important;min-height:0!important}
-      .hero-copy{padding-top:14px!important;max-width:330px!important;position:relative;z-index:5}
-      .hero .eyebrow{font-size:9px!important;letter-spacing:.26em!important;margin-bottom:12px!important}
-      .hero h1{font-size:clamp(34px,11vw,43px)!important;line-height:1.02!important;letter-spacing:.006em!important;max-width:330px!important}
-      .subtext{max-width:290px!important;font-size:12.5px!important;line-height:1.55!important;margin:14px 0!important}
-      .hero-buttons{gap:9px!important}
-      .btn{min-width:0!important;padding:11px 16px!important;font-size:11px!important}
-
-      .hero-stage{min-height:285px!important;margin-top:10px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;width:100%!important;overflow:visible!important}
-      .cake-img{width:min(108%,430px)!important;max-width:430px!important;margin-left:auto!important;margin-right:auto!important;transform:translateX(0)!important;object-position:center!important}
-      .light-ring{left:50%!important;right:auto!important;width:245px!important;border-width:5px!important;transform:translate(-50%,-10%)!important}
-
-      .trust-row{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important;margin-top:8px!important}
-      .trust-row article{grid-template-columns:28px 1fr!important;column-gap:7px!important}
-      .trust-row span{width:28px!important;height:28px!important;font-size:14px!important}
-      .trust-row strong{font-size:9.5px!important;line-height:1.2!important}
-      .trust-row small{font-size:8.5px!important;line-height:1.2!important}
-
-      .section{padding:34px 14px!important}
-      .section-head{margin-bottom:16px!important;gap:8px!important;align-items:flex-start!important}
-      .section h2{font-size:24px!important;line-height:1.15!important}
-      .text-link{font-size:11px!important}
-      .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
-      .product-card{border-radius:14px!important;background:rgba(255,255,255,.78)!important}
-      .product-card img{height:128px!important}
-      .product-info{padding:10px!important;min-height:116px!important}
-      .product-info h3{font-size:11px!important;line-height:1.25!important;min-height:28px!important}
-      .product-info p{font-size:10px!important;margin-bottom:8px!important}
-      .product-info strong{font-size:12px!important}
-      .product-info button{right:9px!important;bottom:9px!important;width:30px!important;height:26px!important;border-radius:9px!important;font-size:12px!important}
-
-      .occasion-grid{grid-template-columns:repeat(3,1fr)!important;gap:9px!important}
-      .occasion-grid a{min-height:62px!important;padding:12px 6px!important;border-radius:16px!important;font-size:10px!important;gap:7px!important;background:rgba(255,255,255,.58)!important}
-      .custom-banner{margin:8px 14px 34px!important;min-height:0!important;border-radius:18px!important;grid-template-columns:1fr!important;background:linear-gradient(100deg,#bf5f78,#e68fa2)!important}
-      .custom-banner>div{padding:24px 20px!important}
-      .custom-banner p{font-size:14px!important}
-      .custom-banner h2{font-size:24px!important;letter-spacing:.07em!important}
-      .custom-banner span{font-size:11px!important;line-height:1.55!important}
-      .custom-banner img{height:210px!important;opacity:.72!important}
-      .testimonial{margin:14px 14px 28px!important;padding:24px 18px!important;grid-template-columns:1fr!important;text-align:center!important;gap:10px!important;background:rgba(255,255,255,.62)!important}
-      .quote{font-size:46px!important}
-      .testimonial p{font-size:12px!important}
-      .footer{grid-template-columns:1fr 1fr!important;gap:22px 18px!important;padding:30px 18px 74px!important;background:#bf6f83!important}
-      .footer-logo{grid-column:1 / -1!important}
-      .footer img{width:112px!important}
-      .footer p{font-size:11px!important;line-height:1.55!important;max-width:230px!important}
-      .footer h4{font-size:10px!important;letter-spacing:.16em!important;margin:0 0 12px!important}
-      .footer a{font-size:10.5px!important;margin:8px 0!important}
-      .floating-butterfly-whatsapp{right:8px!important;bottom:10px!important;width:70px!important;height:62px!important;z-index:35!important}
-      .butterfly-svg{width:66px!important;height:55px!important}
-    }
-  </style>
+  <script>
+    document.documentElement.style.colorScheme = "only light";
+    document.documentElement.dataset.theme = "light";
+  </script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="page-shell">
     <section class="hero" id="home">
-      <img class="hero-bg" src="https://altaqawy.github.io/zmord/assets/hero-bg.png" alt="" aria-hidden="true" />
+      <img class="hero-bg" src="assets/hero-bg.png" alt="" aria-hidden="true" />
+      <div class="petals-layer" aria-hidden="true"></div>
 
       <header class="navbar">
-        <a class="brand" href="#" aria-label="ZMORD Cake home">
-          <img src="https://altaqawy.github.io/zmord/assets/logo-clean-dark.png" alt="ZMORD Cake" />
+        <a class="brand" href="index.html" aria-label="ZMORD Cake home">
+          <img src="assets/logo-clean-dark.png" alt="ZMORD Cake" />
         </a>
         <nav class="nav-links" aria-label="Main navigation">
-          <a class="active" href="#">Home</a>
-          <a href="#shop-preview">Shop</a>
+          <a class="active" href="index.html">Home</a>
+          <a href="products.html">Shop</a>
           <a href="#occasions">Occasions</a>
           <a href="#custom">Custom Cakes</a>
           <a href="#about">About Us</a>
@@ -250,7 +66,7 @@
 
         <div class="hero-stage" aria-hidden="true">
           <div class="light-ring"></div>
-          <img class="cake-img" src="https://altaqawy.github.io/zmord/assets/hero-cake.png" alt="Pink luxury cake on pedestal" />
+          <img class="cake-img" src="assets/hero-cake.png" alt="Pink luxury cake on pedestal" />
         </div>
       </div>
 
@@ -267,24 +83,24 @@
           <p class="eyebrow">BEST SELLERS <span>♥</span></p>
           <h2>Loved by Our Customers</h2>
         </div>
-        <a class="text-link" href="#">View All Cakes →</a>
+        <a class="text-link" href="products.html">View All Cakes →</a>
       </div>
 
       <div class="product-grid">
         <article class="product-card bestseller">
-          <img src="https://altaqawy.github.io/zmord/assets/product-base.jpg" alt="Pink Bow Cake">
+          <img src="assets/product-base.jpg" alt="Pink Bow Cake">
           <div class="product-info"><h3>Pink Bow Cake</h3><p>★ 4.9 <span>(128)</span></p><strong>KD 18.000</strong><button>🛒</button></div>
         </article>
         <article class="product-card">
-          <img src="https://altaqawy.github.io/zmord/assets/product-chocolate.jpg" alt="Chocolate drip cake">
+          <img src="assets/product-chocolate.jpg" alt="Chocolate drip cake">
           <div class="product-info"><h3>Chocolate Drip Cake</h3><p>★ 4.8 <span>(96)</span></p><strong>KD 16.000</strong><button>🛒</button></div>
         </article>
         <article class="product-card">
-          <img src="https://altaqawy.github.io/zmord/assets/product-chocolate-set.jpg" alt="Chocolate caramel cake">
+          <img src="assets/product-chocolate-set.jpg" alt="Chocolate caramel cake">
           <div class="product-info"><h3>Chocolate Caramel Cake</h3><p>★ 4.7 <span>(102)</span></p><strong>KD 17.500</strong><button>🛒</button></div>
         </article>
         <article class="product-card">
-          <img src="https://altaqawy.github.io/zmord/assets/product-bow.jpg" alt="Happy birthday cake">
+          <img src="assets/product-bow.jpg" alt="Happy birthday cake">
           <div class="product-info"><h3>Happy Birthday Cake</h3><p>★ 4.9 <span>(75)</span></p><strong>KD 15.000</strong><button>🛒</button></div>
         </article>
       </div>
@@ -293,12 +109,12 @@
     <section class="section occasion-section" id="occasions">
       <p class="eyebrow center">SHOP BY OCCASION <span>♥</span></p>
       <div class="occasion-grid">
-        <a href="#">🎂<span>Birthday</span></a>
-        <a href="#">💍<span>Anniversary</span></a>
-        <a href="#">💗<span>Wedding</span></a>
-        <a href="#">🍼<span>Baby Shower</span></a>
-        <a href="#">🎓<span>Graduation</span></a>
-        <a href="#">🌙<span>Eid &amp; Holidays</span></a>
+        <a href="products.html#birthday">🎂<span>Birthday</span></a>
+        <a href="products.html#anniversary">💍<span>Anniversary</span></a>
+        <a href="products.html#wedding">💗<span>Wedding</span></a>
+        <a href="products.html#baby">🍼<span>Baby Shower</span></a>
+        <a href="products.html#graduation">🎓<span>Graduation</span></a>
+        <a href="products.html#eid">🌙<span>Eid &amp; Holidays</span></a>
       </div>
     </section>
 
@@ -309,7 +125,7 @@
         <span>From elegant to playful, tell us your idea and we'll design a cake that's uniquely yours.</span>
         <a class="btn primary" href="https://wa.me/96565005017" target="_blank" rel="noopener">Chat on WhatsApp</a>
       </div>
-      <img src="https://altaqawy.github.io/zmord/assets/product-base.jpg" alt="Custom rose cake" />
+      <img src="assets/product-base.jpg" alt="Custom rose cake" />
     </section>
 
     <section class="section testimonial" id="about">
@@ -320,14 +136,14 @@
     </section>
 
     <footer class="footer" id="contact">
-      <div class="footer-logo"><img src="https://altaqawy.github.io/zmord/assets/logo-clean-white.png" alt="ZMORD Cake"><p>Crafting sweet moments with love, elegance, and the finest ingredients.</p></div>
-      <div><h4>Quick Links</h4><a href="#">Home</a><a href="#shop-preview">Shop</a><a href="#custom">Custom Cakes</a><a href="#contact">Contact</a></div>
-      <div><h4>Shop</h4><a href="#">All Cakes</a><a href="#">Bestsellers</a><a href="#">Wedding</a><a href="#">Birthday</a></div>
-      <div><h4>Contact Us</h4><a href="tel:+96565005017">+965 6500 5017</a><a href="mailto:hello@zmordcake.com">hello@zmordcake.com</a><a href="#">Kuwait</a></div>
+      <div class="footer-logo"><img src="assets/logo-clean-white.png" alt="ZMORD Cake"><p>Crafting sweet moments with love, elegance, and the finest ingredients.</p></div>
+      <div><h4>Quick Links</h4><a href="index.html">Home</a><a href="products.html">Shop</a><a href="#custom">Custom Cakes</a><a href="#contact">Contact</a></div>
+      <div><h4>Shop</h4><a href="products.html">All Cakes</a><a href="products.html#bestsellers">Bestsellers</a><a href="products.html#wedding">Wedding</a><a href="products.html#birthday">Birthday</a></div>
+      <div><h4>Contact Us</h4><a href="tel:+96565005017">+965 6500 5017</a><a href="mailto:hello@zmordcake.com">hello@zmordcake.com</a><a href="#contact">Kuwait</a></div>
     </footer>
   </main>
 
-  <a class="floating-butterfly-whatsapp" href="https://wa.me/96565005017" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <a class="floating-butterfly-whatsapp" href="https://wa.me/96565005017" target="_blank" rel="noopener" aria-label="Order on WhatsApp" data-butterfly-link>
     <svg class="butterfly-svg" viewBox="0 0 120 100" aria-hidden="true">
       <defs>
         <radialGradient id="wingGradient" cx="42%" cy="34%" r="78%">
@@ -359,5 +175,6 @@
       </g>
     </svg>
   </a>
+  <script src="script.js"></script>
 </body>
 </html>
