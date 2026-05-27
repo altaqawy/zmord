@@ -1,4 +1,5 @@
 :root{
+  color-scheme: light only;
   color-scheme: light;
   --rose:#d56f89;
   --rose-dark:#9f4863;
@@ -11,7 +12,7 @@
   --shadow:0 24px 70px rgba(132,58,78,.16);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:light only;background:#fff8f6!important}
 body{
   margin:0;
   background:var(--cream);
@@ -530,43 +531,119 @@ img{max-width:100%;display:block}
 
 
 /* ================================
-   FINAL LIGHT THEME + MOBILE FIX — ZMORD
+   FINAL FORCE LIGHT + MOBILE HERO CENTER — ZMORD
    Keep this block at the very end of styles.css
 ================================ */
 
-/* Force light theme even if the phone/browser is on dark mode */
 :root,
 html,
 body {
-  color-scheme: light !important;
+  color-scheme: light only !important;
 }
 
 html,
 body,
 .page-shell {
   background: #fff8f6 !important;
+  color: #2f2727 !important;
 }
 
-body,
-.hero,
-.products-page-shell,
-.inner-navbar,
-.product-card,
-.custom-banner,
-.footer {
+/* Helps against forced dark mode in some mobile browsers */
+* {
   forced-color-adjust: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light !important;
-  }
+input,
+textarea,
+select,
+button {
+  color-scheme: light only !important;
+}
 
+.hero {
+  background: linear-gradient(90deg,#fff9f7 0%,#fff6f4 48%,#f7cdd3 100%) !important;
+}
+
+.hero::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255,250,248,.93),
+    rgba(255,248,246,.66) 46%,
+    rgba(246,204,211,.30)
+  ) !important;
+}
+
+.products-page-shell {
+  background: linear-gradient(180deg,#fff8f6 0%,#fffdfb 100%) !important;
+}
+
+.inner-navbar {
+  background: rgba(255,248,246,.9) !important;
+}
+
+.product-card,
+.occasion-grid a,
+.testimonial {
+  background: rgba(255,255,255,.78) !important;
+  color: #2f2727 !important;
+}
+
+.product-info h3,
+.product-info strong,
+.section h2,
+.products-hero h1,
+.hero h1,
+.subtext,
+.eyebrow,
+.nav-links a {
+  color: #2f2727 !important;
+}
+
+.hero h1 span,
+.nav-links a.active,
+.nav-links a:hover,
+.text-link {
+  color: #d56f89 !important;
+}
+
+.footer {
+  background: #bf6f83 !important;
+  color: white !important;
+}
+
+.footer a,
+.footer p {
+  color: rgba(255,255,255,.86) !important;
+}
+
+.custom-banner {
+  background: linear-gradient(100deg,#bf5f78,#e68fa2) !important;
+  color: white !important;
+}
+
+.filter-chip {
+  background: white !important;
+  color: #6f5960 !important;
+}
+
+.filter-chip.active,
+.filter-chip:hover {
+  background: #d56f89 !important;
+  border-color: #d56f89 !important;
+  color: white !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
   html,
-  body,
-  .page-shell {
+  body {
+    color-scheme: light only !important;
     background: #fff8f6 !important;
     color: #2f2727 !important;
+  }
+
+  .page-shell {
+    background: #fff8f6 !important;
   }
 
   .hero {
@@ -582,11 +659,8 @@ body,
     ) !important;
   }
 
-  .inner-navbar {
-    background: rgba(255,248,246,.9) !important;
-  }
-
   .product-card,
+  .occasion-grid a,
   .testimonial {
     background: rgba(255,255,255,.78) !important;
     color: #2f2727 !important;
@@ -598,6 +672,7 @@ body,
   }
 }
 
+/* Mobile polish + center hero cake */
 @media (max-width: 720px) {
   html,
   body {
@@ -617,20 +692,21 @@ body,
 
   .hero {
     min-height: auto !important;
-    padding: 10px 14px 26px !important;
+    padding: 10px 14px 28px !important;
+    background: linear-gradient(180deg,#fff9f7 0%,#fff6f4 54%,#f7cdd3 100%) !important;
   }
 
   .hero-bg {
-    object-position: 58% center;
-    opacity: .72;
+    object-position: center center !important;
+    opacity: .74 !important;
   }
 
   .hero::after {
     background: linear-gradient(
       180deg,
-      rgba(255,250,248,.94),
-      rgba(255,248,246,.72) 52%,
-      rgba(246,204,211,.25)
+      rgba(255,250,248,.95),
+      rgba(255,248,246,.78) 45%,
+      rgba(246,204,211,.30)
     ) !important;
   }
 
@@ -647,7 +723,7 @@ body,
   }
 
   .nav-links {
-    display: none;
+    display: none !important;
   }
 
   .nav-actions {
@@ -671,17 +747,17 @@ body,
   }
 
   .cart span {
-    width: 16px;
-    height: 16px;
-    font-size: 10px;
-    right: -2px;
-    top: 0;
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 10px !important;
+    right: -2px !important;
+    top: 0 !important;
   }
 
   .menu-btn {
     display: block !important;
-    font-size: 23px;
-    padding: 0 2px;
+    font-size: 23px !important;
+    padding: 0 2px !important;
   }
 
   .hero-content {
@@ -692,30 +768,32 @@ body,
   .hero-copy {
     padding-top: 14px !important;
     max-width: 330px !important;
+    position: relative;
+    z-index: 5;
   }
 
   .hero .eyebrow {
     font-size: 9px !important;
-    letter-spacing: .26em;
+    letter-spacing: .26em !important;
     margin-bottom: 12px !important;
   }
 
   .hero h1 {
     font-size: clamp(34px, 11vw, 43px) !important;
     line-height: 1.02 !important;
-    letter-spacing: .006em;
+    letter-spacing: .006em !important;
     max-width: 330px !important;
   }
 
   .subtext {
-    max-width: 290px;
+    max-width: 290px !important;
     font-size: 12.5px !important;
-    line-height: 1.55;
+    line-height: 1.55 !important;
     margin: 14px 0 !important;
   }
 
   .hero-buttons {
-    gap: 9px;
+    gap: 9px !important;
   }
 
   .btn {
@@ -725,31 +803,43 @@ body,
   }
 
   .btn.primary::before {
-    font-size: 14px;
+    font-size: 14px !important;
   }
 
+  /* Center the hero cake on mobile */
   .hero-stage {
-    min-height: 255px !important;
-    margin-top: 8px;
+    min-height: 285px !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    overflow: visible !important;
   }
 
   .cake-img {
-    width: 112% !important;
-    max-width: none !important;
-    margin-left: -6% !important;
+    width: min(108%, 430px) !important;
+    max-width: 430px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    transform: translateX(0) !important;
+    object-position: center !important;
   }
 
   .light-ring {
+    left: 50% !important;
+    right: auto !important;
     width: 245px !important;
     border-width: 5px !important;
-    transform: translateY(-10%);
+    transform: translate(-50%, -10%) !important;
   }
 
   .trust-row {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 8px !important;
-    margin-top: 4px !important;
+    margin-top: 8px !important;
   }
 
   .trust-row article {
@@ -765,12 +855,12 @@ body,
 
   .trust-row strong {
     font-size: 9.5px !important;
-    line-height: 1.2;
+    line-height: 1.2 !important;
   }
 
   .trust-row small {
     font-size: 8.5px !important;
-    line-height: 1.2;
+    line-height: 1.2 !important;
   }
 
   .section,
@@ -779,19 +869,19 @@ body,
   }
 
   .section-head {
-    margin-bottom: 16px;
-    gap: 8px;
-    align-items: flex-start;
+    margin-bottom: 16px !important;
+    gap: 8px !important;
+    align-items: flex-start !important;
   }
 
   .section h2,
   .products-hero h1 {
     font-size: 24px !important;
-    line-height: 1.15;
+    line-height: 1.15 !important;
   }
 
   .text-link {
-    font-size: 11px;
+    font-size: 11px !important;
   }
 
   .product-grid,
@@ -801,7 +891,7 @@ body,
   }
 
   .product-card {
-    border-radius: 14px;
+    border-radius: 14px !important;
     background: rgba(255,255,255,.78) !important;
   }
 
@@ -811,18 +901,18 @@ body,
 
   .product-info {
     padding: 10px !important;
-    min-height: 116px;
+    min-height: 116px !important;
   }
 
   .product-info h3 {
     font-size: 11px !important;
-    line-height: 1.25;
-    min-height: 28px;
+    line-height: 1.25 !important;
+    min-height: 28px !important;
   }
 
   .product-info p {
-    font-size: 10px;
-    margin-bottom: 8px;
+    font-size: 10px !important;
+    margin-bottom: 8px !important;
   }
 
   .product-info strong {
@@ -835,7 +925,7 @@ body,
     width: 30px !important;
     height: 26px !important;
     border-radius: 9px !important;
-    font-size: 12px;
+    font-size: 12px !important;
   }
 
   .occasion-grid {
@@ -844,19 +934,20 @@ body,
   }
 
   .occasion-grid a {
-    min-height: 62px;
+    min-height: 62px !important;
     padding: 12px 6px !important;
-    border-radius: 16px;
+    border-radius: 16px !important;
     font-size: 10px !important;
-    gap: 7px;
+    gap: 7px !important;
     background: rgba(255,255,255,.58) !important;
   }
 
   .custom-banner {
     margin: 8px 14px 34px !important;
-    min-height: 0;
-    border-radius: 18px;
+    min-height: 0 !important;
+    border-radius: 18px !important;
     grid-template-columns: 1fr !important;
+    background: linear-gradient(100deg,#bf5f78,#e68fa2) !important;
   }
 
   .custom-banner > div {
@@ -869,17 +960,17 @@ body,
 
   .custom-banner h2 {
     font-size: 24px !important;
-    letter-spacing: .07em;
+    letter-spacing: .07em !important;
   }
 
   .custom-banner span {
-    font-size: 11px;
-    line-height: 1.55;
+    font-size: 11px !important;
+    line-height: 1.55 !important;
   }
 
   .custom-banner img {
     height: 210px !important;
-    opacity: .72;
+    opacity: .72 !important;
   }
 
   .instagram-strip {
@@ -887,21 +978,21 @@ body,
   }
 
   .insta-row {
-    gap: 9px;
+    gap: 9px !important;
   }
 
   .insta-row img {
     width: 84px !important;
     height: 62px !important;
-    border-radius: 10px;
+    border-radius: 10px !important;
   }
 
   .testimonial {
     margin: 14px 14px 28px !important;
     padding: 24px 18px !important;
     grid-template-columns: 1fr !important;
-    text-align: center;
-    gap: 10px;
+    text-align: center !important;
+    gap: 10px !important;
     background: rgba(255,255,255,.62) !important;
   }
 
@@ -921,7 +1012,7 @@ body,
   }
 
   .footer-logo {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1 !important;
   }
 
   .footer img {
@@ -929,20 +1020,20 @@ body,
   }
 
   .footer p {
-    font-size: 11px;
-    line-height: 1.55;
-    max-width: 230px;
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+    max-width: 230px !important;
   }
 
   .footer h4 {
-    font-size: 10px;
-    letter-spacing: .16em;
-    margin: 0 0 12px;
+    font-size: 10px !important;
+    letter-spacing: .16em !important;
+    margin: 0 0 12px !important;
   }
 
   .footer a {
-    font-size: 10.5px;
-    margin: 8px 0;
+    font-size: 10.5px !important;
+    margin: 8px 0 !important;
   }
 
   .floating-butterfly-whatsapp {
@@ -950,7 +1041,7 @@ body,
     bottom: 10px !important;
     width: 70px !important;
     height: 62px !important;
-    z-index: 35;
+    z-index: 35 !important;
   }
 
   .butterfly-svg {
@@ -964,17 +1055,17 @@ body,
   }
 
   .products-hero {
-    gap: 16px;
+    gap: 16px !important;
   }
 
   .products-hero h1 {
     font-size: 30px !important;
-    line-height: 1.08;
+    line-height: 1.08 !important;
   }
 
   .products-hero p:last-child {
-    font-size: 12px;
-    line-height: 1.55;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
   }
 
   .filters-bar {
@@ -982,12 +1073,12 @@ body,
   }
 
   .filter-chip-row {
-    gap: 8px;
+    gap: 8px !important;
   }
 
   .filter-chip {
     padding: 9px 13px !important;
-    font-size: 11px;
+    font-size: 11px !important;
     background: white !important;
   }
 
@@ -1018,7 +1109,11 @@ body,
   }
 
   .product-info {
-    min-height: 112px;
+    min-height: 112px !important;
+  }
+
+  .cake-img {
+    width: min(112%, 390px) !important;
   }
 }
 
