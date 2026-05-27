@@ -1,7 +1,6 @@
 :root{
-  color-scheme: light only;
-  color-scheme: light;
-  --rose:#d56f89;
+  color-scheme: only light;
+--rose:#d56f89;
   --rose-dark:#9f4863;
   --rose-soft:#f5d9df;
   --cream:#fff8f6;
@@ -12,7 +11,7 @@
   --shadow:0 24px 70px rgba(132,58,78,.16);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;color-scheme:light only;background:#fff8f6!important}
+html{scroll-behavior:smooth;color-scheme:only light;background:#fff8f6!important}
 body{
   margin:0;
   background:var(--cream);
@@ -531,14 +530,15 @@ img{max-width:100%;display:block}
 
 
 /* ================================
-   FINAL FORCE LIGHT + MOBILE HERO CENTER — ZMORD
+   FINAL HARD LIGHT LOCK + MOBILE HERO CENTER — ZMORD
    Keep this block at the very end of styles.css
 ================================ */
 
+/* Correct CSS syntax is "only light", not "light only" */
 :root,
 html,
 body {
-  color-scheme: light only !important;
+  color-scheme: only light !important;
 }
 
 html,
@@ -548,16 +548,33 @@ body,
   color: #2f2727 !important;
 }
 
-/* Helps against forced dark mode in some mobile browsers */
+/* Helps against forced colors and aggressive mobile darkening */
 * {
   forced-color-adjust: none;
+}
+
+img,
+svg,
+video,
+canvas,
+.hero-bg,
+.cake-img {
+  filter: none !important;
+  mix-blend-mode: normal !important;
 }
 
 input,
 textarea,
 select,
 button {
-  color-scheme: light only !important;
+  color-scheme: only light !important;
+}
+
+/* Hard redeclare main light palette */
+.page-shell,
+.products-page-shell {
+  background: #fff8f6 !important;
+  color: #2f2727 !important;
 }
 
 .hero {
@@ -606,23 +623,26 @@ button {
   color: #d56f89 !important;
 }
 
-.footer {
-  background: #bf6f83 !important;
-  color: white !important;
+.whatsapp-nav,
+.btn.primary,
+.product-info button {
+  background: linear-gradient(135deg,#d56f89,#d66f88) !important;
+  color: #fff !important;
 }
 
-.footer a,
-.footer p {
-  color: rgba(255,255,255,.86) !important;
+.btn.ghost {
+  border-color: #d56f89 !important;
+  color: #d56f89 !important;
+  background: rgba(255,255,255,.5) !important;
 }
 
 .custom-banner {
   background: linear-gradient(100deg,#bf5f78,#e68fa2) !important;
-  color: white !important;
+  color: #fff !important;
 }
 
 .filter-chip {
-  background: white !important;
+  background: #fff !important;
   color: #6f5960 !important;
 }
 
@@ -630,20 +650,33 @@ button {
 .filter-chip:hover {
   background: #d56f89 !important;
   border-color: #d56f89 !important;
-  color: white !important;
+  color: #fff !important;
 }
 
+.footer {
+  background: #bf6f83 !important;
+  color: #fff !important;
+}
+
+.footer a,
+.footer p {
+  color: rgba(255,255,255,.86) !important;
+}
+
+/* If the device/browser reports dark mode, still keep the website light */
 @media (prefers-color-scheme: dark) {
   :root,
   html,
   body {
-    color-scheme: light only !important;
+    color-scheme: only light !important;
     background: #fff8f6 !important;
     color: #2f2727 !important;
   }
 
-  .page-shell {
+  .page-shell,
+  .products-page-shell {
     background: #fff8f6 !important;
+    color: #2f2727 !important;
   }
 
   .hero {
@@ -659,6 +692,14 @@ button {
     ) !important;
   }
 
+  .hero-bg,
+  .cake-img,
+  img,
+  svg {
+    filter: none !important;
+    mix-blend-mode: normal !important;
+  }
+
   .product-card,
   .occasion-grid a,
   .testimonial {
@@ -666,9 +707,14 @@ button {
     color: #2f2727 !important;
   }
 
+  .custom-banner {
+    background: linear-gradient(100deg,#bf5f78,#e68fa2) !important;
+    color: #fff !important;
+  }
+
   .footer {
     background: #bf6f83 !important;
-    color: white !important;
+    color: #fff !important;
   }
 }
 
@@ -699,6 +745,8 @@ button {
   .hero-bg {
     object-position: center center !important;
     opacity: .74 !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
   }
 
   .hero::after {
@@ -806,7 +854,6 @@ button {
     font-size: 14px !important;
   }
 
-  /* Center the hero cake on mobile */
   .hero-stage {
     min-height: 285px !important;
     margin-top: 10px !important;
@@ -1116,4 +1163,3 @@ button {
     width: min(112%, 390px) !important;
   }
 }
-
