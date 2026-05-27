@@ -1047,3 +1047,57 @@ button {
   .product-info { min-height:112px!important; }
   .cake-img { width:min(112%,390px)!important; }
 }
+
+/* ================================
+   Logo switch: Light logo / Dark logo
+================================ */
+
+.brand {
+  position: relative;
+  display: block;
+}
+
+.brand .logo-light,
+.brand .logo-dark {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Default: Light theme */
+.brand .logo-light {
+  display: block !important;
+}
+
+.brand .logo-dark {
+  display: none !important;
+}
+
+/* Controlled dark theme from script */
+:root[data-theme="dark"] .brand .logo-light {
+  display: none !important;
+}
+
+:root[data-theme="dark"] .brand .logo-dark {
+  display: block !important;
+}
+
+/* Controlled light theme from script */
+:root[data-theme="light"] .brand .logo-light {
+  display: block !important;
+}
+
+:root[data-theme="light"] .brand .logo-dark {
+  display: none !important;
+}
+
+/* System dark mode fallback */
+@media (prefers-color-scheme: dark) {
+  .brand .logo-light {
+    display: none !important;
+  }
+
+  .brand .logo-dark {
+    display: block !important;
+  }
+}
