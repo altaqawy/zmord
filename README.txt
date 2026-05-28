@@ -1,13 +1,52 @@
-ZMORD Cake Landing Site — v6
+ZMORD Full Site + Admin v2
 
-Final update:
-- Integrated the new butterfly WhatsApp button into the whole project.
-- WhatsApp icon is part of the large butterfly wing, without green color.
-- On click: the original butterfly flies out of the screen, and a swarm follows it, then WhatsApp opens.
-- Works on index.html and products.html.
+Upload these files to the GitHub repository root:
+- index.html
+- products.html
+- admin.html
+- styles.css
+- script.js
+- admin.js
+- data.js
 
-How to run:
-Open index.html directly, or use Live Server.
+Expected assets folder:
+assets/logo-light.png
+assets/logo-dark.png
+assets/logo-clean-white.png
+assets/favicon.ico
+assets/favicon.png
+assets/apple-touch-icon.png
+assets/hero-bg.png
+assets/hero-cake.png
+assets/product-base.jpg
+assets/product-chocolate.jpg
+assets/product-chocolate-set.jpg
+assets/product-bow.jpg
+assets/product-pink-close.jpg
 
-Change WhatsApp number:
-Search for 96565005017 in index.html and products.html and replace it.
+Open admin:
+https://altaqawy.github.io/zmord/admin.html
+
+Important:
+This is a static GitHub Pages version. Admin changes are saved in the browser localStorage.
+For production global admin, connect it to Supabase/Firebase/backend later.
+
+
+Backend Free Start
+==================
+This version includes optional Firebase + Cloudinary integration.
+
+New files:
+- firebase-config.js
+- firebase-service.js
+- FIREBASE_RULES.txt
+- CLOUDINARY_SETUP.txt
+
+How it works:
+- If Firebase config is empty, the site works locally with localStorage.
+- If Firebase config is filled, public pages read data from Firestore.
+- Admin saves data to Firestore.
+- Cloudinary can be used for image uploads after filling config.
+
+Copyright:
+© 2026 Rawnak. Designed & Developed by Rawnak.

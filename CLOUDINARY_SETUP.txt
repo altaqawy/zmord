@@ -1,0 +1,17 @@
+Cloudinary Setup Notes
+======================
+
+1) Create Cloudinary account.
+2) Go to Settings -> Upload.
+3) Add Upload Preset.
+4) Signing Mode: Unsigned.
+5) Restrict allowed formats to: jpg, jpeg, png, webp.
+6) Set folder: zmord-products.
+7) Copy:
+   - Cloud name
+   - Upload preset
+8) Paste them in firebase-config.js.
+
+Important:
+Unsigned upload is acceptable for early MVP/demo.
+For production, use a tiny backend function to sign uploads.

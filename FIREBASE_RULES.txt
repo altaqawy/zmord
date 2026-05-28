@@ -1,0 +1,41 @@
+Firebase Firestore Rules - Starter
+==================================
+
+Use these rules when you create Firebase.
+
+Option A - Simple locked admin by email:
+Replace admin@example.com with the client's admin email.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /zmord/publicSite {
+      allow read: if true;
+      allow write: if request.auth != null
+                   && request.auth.token.email == "admin@example.com";
+    }
+  }
+}
+
+Option B - Multiple admins:
+Create a document:
+admins/{USER_UID} => { role: "owner" }
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /zmord/publicSite {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow read, write: if false;
+    }
+  }
+}
