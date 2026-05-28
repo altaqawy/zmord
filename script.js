@@ -35,40 +35,40 @@ bootstrapPublicSite();
 
 
 /* =========================================================
-   V7 - Petals + Butterfly transition from uploaded script.js
+   V8 EXACT BUTTERFLY
+   JS from your uploaded file, with capture-phase binding.
 ========================================================= */
 
-(function zmordV7PetalsFromUploadedFile(){
+(function(){
   const layer = document.querySelector('.petals-layer');
-const petalAssets = [
-  'assets/petal-1.png','assets/petal-2.png','assets/petal-3.png','assets/petal-4.png',
-  'assets/petal-5.png','assets/petal-6.png','assets/petal-7.png','assets/petal-8.png'
-];
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const petalAssets = [
+    'assets/petal-1.png','assets/petal-2.png','assets/petal-3.png','assets/petal-4.png',
+    'assets/petal-5.png','assets/petal-6.png','assets/petal-7.png','assets/petal-8.png'
+  ];
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (layer && !prefersReduced) {
-  const count = window.innerWidth < 700 ? 7 : window.innerWidth < 1100 ? 11 : 14;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('span');
-    p.className = 'petal' + (i % 4 === 0 ? ' blur' : '') + (i % 6 === 0 ? ' front' : '');
-    const size = Math.round(18 + Math.random() * 24 + (i % 6 === 0 ? 10 : 0));
-    p.style.width = `${size}px`;
-    p.style.height = `${size}px`;
-    p.style.left = `${2 + Math.random() * 94}%`;
-    p.style.backgroundImage = `url('${petalAssets[i % petalAssets.length]}')`;
-    p.style.animationDuration = `${10 + Math.random() * 9}s`;
-    p.style.animationDelay = `${Math.random() * -18}s`;
-    p.style.setProperty('--drift1', `${-70 + Math.random() * 140}px`);
-    p.style.setProperty('--drift2', `${-90 + Math.random() * 180}px`);
-    p.style.setProperty('--drift3', `${-60 + Math.random() * 120}px`);
-    p.style.setProperty('--op', `${0.26 + Math.random() * 0.34}`);
-    layer.appendChild(p);
+  if (layer && !prefersReduced && layer.dataset.ready !== 'true') {
+    layer.dataset.ready = 'true';
+    const count = window.innerWidth < 700 ? 7 : window.innerWidth < 1100 ? 11 : 14;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('span');
+      p.className = 'petal' + (i % 4 === 0 ? ' blur' : '') + (i % 6 === 0 ? ' front' : '');
+      const size = Math.round(18 + Math.random() * 24 + (i % 6 === 0 ? 10 : 0));
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.left = `${2 + Math.random() * 94}%`;
+      p.style.backgroundImage = `url('${petalAssets[i % petalAssets.length]}')`;
+      p.style.animationDuration = `${10 + Math.random() * 9}s`;
+      p.style.animationDelay = `${Math.random() * -18}s`;
+      p.style.setProperty('--drift1', `${-70 + Math.random() * 140}px`);
+      p.style.setProperty('--drift2', `${-90 + Math.random() * 180}px`);
+      p.style.setProperty('--drift3', `${-60 + Math.random() * 120}px`);
+      p.style.setProperty('--op', `${0.26 + Math.random() * 0.34}`);
+      layer.appendChild(p);
+    }
   }
-}
-
-
-
 })();
+
 
 // Butterfly WhatsApp transition: original butterfly flies out, then the swarm follows
 (function () {
@@ -152,9 +152,11 @@ if (layer && !prefersReduced) {
     overlay.appendChild(leader);
 
     const count = window.innerWidth < 640 ? 18 : 32;
+
     for (let i = 0; i < count; i++) {
       const b = document.createElement('span');
       b.className = 'swarm-butterfly';
+
       const size = Math.round(26 + Math.random() * 48);
       const delay = (0.12 + Math.random() * .46).toFixed(2);
       const spread = -140 + Math.random() * 280;
@@ -174,6 +176,7 @@ if (layer && !prefersReduced) {
       b.style.setProperty('--start-r', `${-25 + Math.random() * 50}deg`);
       b.style.setProperty('--mid-r', `${-35 + Math.random() * 70}deg`);
       b.style.setProperty('--end-r', `${-45 + Math.random() * 90}deg`);
+
       b.innerHTML = miniButterflySvg(false);
       overlay.appendChild(b);
     }

@@ -52,303 +52,11 @@
 
 
 /* =========================================================
-   V7 - Butterfly code taken from uploaded files + petal layer fix
-   Keep this block at the very end.
+   V8 EXACT BUTTERFLY
+   CSS from your uploaded file, plus safe integration fixes.
 ========================================================= */
 
-.petals-layer{position:absolute;left:0;right:0;top:116px;bottom:0;z-index:2;pointer-events:none;overflow:hidden}
-.petal{position:absolute;top:-90px;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.72;filter:drop-shadow(0 8px 10px rgba(177,79,99,.08));animation:petalFall linear infinite}
-.petal.blur{filter:blur(1px);opacity:.42}
-.petal.front{opacity:.45;filter:blur(.7px)}
-.section{padding:68px clamp(32px,5vw,92px)}
-.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px;gap:20px}
-.section h2{font-family:"Bodoni Moda",Georgia,serif;font-size:38px;margin:0;color:#3c3032;font-weight:500}
-.text-link{font-weight:700;color:var(--rose)}
-.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
-.all-grid{grid-template-columns:repeat(4,1fr)}
-.product-card{position:relative;background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(116,52,68,.06);transition:.35s}
-.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.product-card.bestseller::before{content:"Bestseller";position:absolute;top:0;left:0;background:var(--rose);color:white;padding:7px 14px;border-radius:0 0 12px 0;font-size:12px;font-weight:700;z-index:2}
-.product-card img{width:100%;height:230px;object-fit:cover;background:#fff}
-.product-info{position:relative;padding:18px}
-.product-info h3{margin:0 0 10px;font-size:16px}
-.product-info p{margin:0 0 12px;color:#c5821c}
-.product-info p span{color:#8b7d7f}
-.product-info strong{font-size:18px}
-.product-info button{position:absolute;right:16px;bottom:16px;width:44px;height:36px;border:0;border-radius:12px;background:var(--rose);color:white;cursor:pointer}
-.center{text-align:center}
-.occasion-section{padding-top:18px}
-.occasion-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
-.occasion-grid a{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 14px;background:rgba(255,255,255,.58);border:1px solid var(--line);border-radius:24px;color:#493d3f;font-weight:700}
-.occasion-grid a:first-letter{font-size:30px}
-.custom-banner{margin:22px clamp(32px,5vw,92px) 54px;border-radius:24px;min-height:210px;display:grid;grid-template-columns:1fr 420px;align-items:center;overflow:hidden;background:linear-gradient(100deg,#bf5f78,#e68fa2);color:white;box-shadow:var(--shadow)}
-.custom-banner>div{padding:42px 56px}
-.custom-banner p{margin:0 0 5px;font-family:"Bodoni Moda",serif;font-size:22px}
-.custom-banner h2{margin:0 0 14px;text-transform:uppercase;font-family:"Bodoni Moda",serif;font-size:44px;letter-spacing:.1em}
-.custom-banner span{display:block;max-width:500px;line-height:1.7;margin-bottom:20px}
-.custom-banner img{width:100%;height:100%;object-fit:cover;mix-blend-mode:screen;opacity:.86}
-.instagram-strip{padding-top:15px}
-.insta-row{display:flex;gap:16px;overflow:auto;padding-bottom:10px}
-.insta-row img{width:150px;height:100px;object-fit:cover;border-radius:14px;box-shadow:0 12px 24px rgba(116,52,68,.10)}
-.testimonial{max-width:980px;margin:0 auto 40px;padding:34px 44px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.62);display:grid;grid-template-columns:60px 1fr auto;gap:18px;align-items:center}
-.quote{font-family:"Bodoni Moda",serif;font-size:76px;color:var(--rose);line-height:.8}
-.testimonial p{margin:0;font-size:18px;line-height:1.6}
-.rating{color:#d8911d}
-.footer{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:42px;background:#bf6f83;color:white;padding:48px 92px 36px}
-.footer img{width:150px}
-.footer p{max-width:280px;line-height:1.7;color:rgba(255,255,255,.84)}
-.footer h4{letter-spacing:.18em;text-transform:uppercase;font-size:13px}
-.footer a{display:block;color:rgba(255,255,255,.86);margin:10px 0}
-
-
-
-
-/* Butterfly WhatsApp floating button + leader transition */
-.floating-butterfly-whatsapp{
-  position:fixed;
-  right:34px;
-  bottom:34px;
-  width:128px;
-  height:112px;
-  z-index:30;
-  display:grid;
-  place-items:center;
-  text-decoration:none;
-  isolation:isolate;
-  cursor:pointer;
-  filter:drop-shadow(0 18px 26px rgba(156,61,86,.22));
-}
-
-.butterfly-svg{
-  width:118px;
-  height:98px;
-  overflow:visible;
-}
-
-.butterfly-core{
-  transform-origin:60px 54px;
-  animation:floatButterfly 4s ease-in-out infinite;
-}
-
-.wing-left{
-  transform-origin:58px 52px;
-  animation:flapLeft .82s ease-in-out infinite;
-}
-
-.wing-right{
-  transform-origin:62px 52px;
-  animation:flapRight .82s ease-in-out infinite;
-}
-
-.wing-shape{
-  fill:url(#wingGradient);
-  stroke:rgba(255,255,255,.92);
-  stroke-width:1.2;
-}
-
-.wing-lines{
-  fill:none;
-  stroke:rgba(181,81,108,.22);
-  stroke-width:1.2;
-  stroke-linecap:round;
-}
-
-.body{
-  fill:url(#bodyGradient);
-}
-
-.body-highlight{
-  fill:rgba(255,255,255,.35);
-}
-
-.antenna{
-  fill:none;
-  stroke:#b65a73;
-  stroke-width:2.2;
-  stroke-linecap:round;
-  opacity:.9;
-}
-
-.antenna-dot{
-  fill:#b65a73;
-}
-
-.whatsapp-wing-badge{
-  transform-origin:93px 40px;
-  animation:badgePulse 3.2s ease-in-out infinite;
-  opacity:.96;
-}
-
-.whatsapp-badge-bg{
-  fill:rgba(255,255,255,.42);
-  stroke:rgba(255,255,255,.78);
-  stroke-width:2;
-}
-
-.whatsapp-mark{
-  fill:#b85f76;
-}
-
-.floating-butterfly-whatsapp:hover .wing-left,
-.floating-butterfly-whatsapp:hover .wing-right{
-  animation-duration:.48s;
-}
-
-.floating-butterfly-whatsapp:hover .butterfly-core{
-  animation-duration:2.4s;
-}
-
-.butterfly-transition{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  pointer-events:none;
-  overflow:hidden;
-  background:rgba(255,248,246,0);
-  opacity:0;
-  transition:background .45s ease, opacity .2s ease;
-}
-
-.butterfly-transition.active{
-  opacity:1;
-  background:rgba(255,248,246,.18);
-  backdrop-filter:blur(1.5px);
-}
-
-.leader-butterfly{
-  position:fixed;
-  left:var(--leader-x);
-  top:var(--leader-y);
-  width:118px;
-  height:98px;
-  z-index:10000;
-  transform:translate(-50%,-50%) rotate(-3deg) scale(1);
-  animation:leaderFlyOut 1.65s cubic-bezier(.18,.78,.2,1) forwards;
-  filter:drop-shadow(0 18px 26px rgba(156,61,86,.22));
-  pointer-events:none;
-}
-
-.leader-butterfly svg,
-.swarm-butterfly svg{
-  width:100%;
-  height:100%;
-  overflow:visible;
-}
-
-.swarm-butterfly{
-  position:absolute;
-  width:var(--size);
-  height:var(--size);
-  left:var(--start-x);
-  top:var(--start-y);
-  transform:translate(-50%,-50%) scale(.35) rotate(var(--start-r));
-  opacity:0;
-  animation:followLeaderFly 1.65s cubic-bezier(.16,.84,.22,1) forwards;
-  animation-delay:var(--delay);
-  filter:drop-shadow(0 12px 18px rgba(156,61,86,.2));
-}
-
-.leader-butterfly .mini-left{transform-origin:50% 55%;animation:miniFlapLeft .28s ease-in-out infinite}
-.leader-butterfly .mini-right{transform-origin:50% 55%;animation:miniFlapRight .28s ease-in-out infinite}
-.swarm-butterfly .mini-left{transform-origin:50% 55%;animation:miniFlapLeft .38s ease-in-out infinite}
-.swarm-butterfly .mini-right{transform-origin:50% 55%;animation:miniFlapRight .38s ease-in-out infinite}
-
-.transition-center-glow{
-  position:fixed;
-  left:var(--click-x);
-  top:var(--click-y);
-  width:34px;
-  height:34px;
-  border-radius:999px;
-  background:radial-gradient(circle, rgba(255,255,255,.95), rgba(245,174,198,.75), transparent 72%);
-  transform:translate(-50%,-50%) scale(0);
-  animation:centerGlow 1.15s ease-out forwards;
-}
-
-@keyframes floatButterfly{
-  0%,100%{transform:translateY(0) rotate(-3deg)}
-  50%{transform:translateY(-10px) rotate(4deg)}
-}
-
-@keyframes flapLeft{
-  0%,100%{transform:rotateY(0deg) rotate(-2deg)}
-  50%{transform:rotateY(48deg) rotate(-12deg) scaleX(.78)}
-}
-
-@keyframes flapRight{
-  0%,100%{transform:rotateY(0deg) rotate(2deg)}
-  50%{transform:rotateY(-48deg) rotate(12deg) scaleX(.78)}
-}
-
-@keyframes badgePulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.08)}
-}
-
-@keyframes leaderFlyOut{
-  0%{opacity:1;transform:translate(-50%,-50%) rotate(-3deg) scale(1)}
-  28%{opacity:1;transform:translate(calc(var(--leader-mid-x) - var(--leader-x)), calc(var(--leader-mid-y) - var(--leader-y))) rotate(-18deg) scale(1.06)}
-  100%{opacity:0;transform:translate(calc(var(--leader-end-x) - var(--leader-x)), calc(var(--leader-end-y) - var(--leader-y))) rotate(-34deg) scale(.74)}
-}
-
-@keyframes followLeaderFly{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.22) rotate(var(--start-r))}
-  10%{opacity:.95}
-  35%{opacity:.95;transform:translate(calc(var(--mid-x) - var(--start-x)), calc(var(--mid-y) - var(--start-y))) scale(.78) rotate(var(--mid-r))}
-  100%{opacity:0;transform:translate(calc(var(--end-x) - var(--start-x)), calc(var(--end-y) - var(--start-y))) scale(.56) rotate(var(--end-r))}
-}
-
-@keyframes centerGlow{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(0)}
-  35%{opacity:.85}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(12)}
-}
-
-@keyframes miniFlapLeft{
-  0%,100%{transform:rotateY(0deg) rotate(-4deg)}
-  50%{transform:rotateY(58deg) rotate(-18deg) scaleX(.72)}
-}
-
-@keyframes miniFlapRight{
-  0%,100%{transform:rotateY(0deg) rotate(4deg)}
-  50%{transform:rotateY(-58deg) rotate(18deg) scaleX(.72)}
-}
-
-@media(max-width:720px){
-  .floating-butterfly-whatsapp{
-    right:16px;
-    bottom:16px;
-    width:104px;
-    height:92px;
-  }
-
-  .butterfly-svg{
-    width:98px;
-    height:82px;
-  }
-}
-
-/* products page */
-.products-page-shell{background:linear-gradient(180deg,#fff8f6 0%,#fffdfb 100%)}
-.inner-navbar{padding:24px 52px;background:rgba(255,248,246,.9);backdrop-filter:blur(10px);position:sticky;top:0;z-index:15;height:auto;border-bottom:1px solid rgba(213,111,137,.12)}
-.products-hero{display:flex;align-items:end;justify-content:space-between;gap:30px;padding:56px 92px 28px;background:linear-gradient(180deg,rgba(255,245,246,.94),rgba(255,252,251,.92))}
-.products-hero h1{font-family:"Bodoni Moda",serif;font-size:56px;margin:0 0 12px;color:#31292a}
-.products-hero p:last-child{max-width:640px;color:#5a4b4f;line-height:1.7;margin:0}
-.filters-bar{padding-top:14px;padding-bottom:6px}
-.filter-chip-row{display:flex;gap:12px;flex-wrap:wrap}
-.filter-chip{padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:white;color:#6f5960;font-weight:600}
-.filter-chip.active,.filter-chip:hover{background:var(--rose);border-color:var(--rose);color:white}
-.full-products{padding-top:24px;padding-bottom:80px}
-
-@keyframes floatCake{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes petalFall{
-  0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
-  10%{opacity:var(--op,.72)}
-  40%{transform:translate3d(var(--drift1,40px),38vh,0) rotate(130deg)}
-  70%{transform:translate3d(var(--drift2,-30px),72vh,0) rotate(240deg)}
-  100%{transform:translate3d(var(--drift3,25px),112vh,0) rotate(360deg);opacity:0}
-}
-
+/* Hero petals layer behind content */
 .hero {
   position: relative !important;
   isolation: isolate !important;
@@ -382,6 +90,7 @@
   z-index: 4 !important;
 }
 
+/* Petal fallback if petal image assets are missing */
 .petal {
   position: absolute !important;
   top: -90px !important;
@@ -393,14 +102,13 @@
   animation: petalFall linear infinite !important;
 }
 
-/* fallback visible petal shape when assets/petal-*.png are not uploaded yet */
 .petal::before {
   content: "" !important;
   position: absolute !important;
   inset: 10% !important;
   border-radius: 80% 0 80% 0 !important;
   background:
-    radial-gradient(circle at 28% 28%, rgba(255,255,255,.9), transparent 24%),
+    radial-gradient(circle at 28% 28%, rgba(255,255,255,.92), transparent 24%),
     linear-gradient(135deg, rgba(255,182,202,.62), rgba(213,111,137,.34)) !important;
   transform: rotate(-18deg) !important;
 }
@@ -415,7 +123,15 @@
   filter: blur(.7px) drop-shadow(0 8px 10px rgba(177,79,99,.08)) !important;
 }
 
-/* Butterfly WhatsApp floating button + leader transition */
+@keyframes petalFall {
+  0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
+  10%{opacity:var(--op,.72)}
+  40%{transform:translate3d(var(--drift1,40px),38vh,0) rotate(130deg)}
+  70%{transform:translate3d(var(--drift2,-30px),72vh,0) rotate(240deg)}
+  100%{transform:translate3d(var(--drift3,25px),112vh,0) rotate(360deg);opacity:0}
+}
+
+/* Uploaded butterfly CSS */
 .floating-butterfly-whatsapp{
   position:fixed;
   right:34px;
@@ -623,7 +339,7 @@
 
 @keyframes miniFlapRight{
   0%,100%{transform:rotateY(0deg) rotate(4deg)}
-  50%{transform:rotateY(-58deg) rotate(18deg) scaleX(.72)}
+  50%{transform:rotateY(-58deg) rotate(18deg)}
 }
 
 @media(max-width:720px){
@@ -640,50 +356,22 @@
   }
 }
 
-
-
-/* Ensure transition is above everything */
-.butterfly-transition {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 999999 !important;
-  pointer-events: none !important;
-  overflow: hidden !important;
-  background: rgba(255,248,246,0) !important;
-  opacity: 0 !important;
-  transition: background .45s ease, opacity .2s ease !important;
+/* Strong integration overrides */
+.floating-butterfly-whatsapp {
+  z-index: 80 !important;
 }
 
-.butterfly-transition.active {
-  opacity: 1 !important;
-  background: rgba(255,248,246,.18) !important;
-  backdrop-filter: blur(1.5px) !important;
+.butterfly-transition {
+  z-index: 999999 !important;
 }
 
 .leader-butterfly {
-  position: fixed !important;
-  left: var(--leader-x) !important;
-  top: var(--leader-y) !important;
-  width: 118px !important;
-  height: 98px !important;
   z-index: 1000000 !important;
-  transform: translate(-50%,-50%) rotate(-3deg) scale(1) !important;
-  animation: leaderFlyOut 1.65s cubic-bezier(.18,.78,.2,1) forwards !important;
-  filter: drop-shadow(0 18px 26px rgba(156,61,86,.22)) !important;
-  pointer-events: none !important;
 }
 
 .swarm-butterfly {
   position: fixed !important;
-  width: var(--size) !important;
-  height: var(--size) !important;
-  left: var(--start-x) !important;
-  top: var(--start-y) !important;
-  transform: translate(-50%,-50%) scale(.35) rotate(var(--start-r)) !important;
-  opacity: 0 !important;
-  animation: followLeaderFly 1.65s cubic-bezier(.16,.84,.22,1) forwards !important;
-  animation-delay: var(--delay) !important;
-  filter: drop-shadow(0 12px 18px rgba(156,61,86,.2)) !important;
+  z-index: 999999 !important;
 }
 
 .icon-btn {
