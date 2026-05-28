@@ -49,3 +49,230 @@
   background:rgba(255,255,255,.66);
   border:1px solid var(--line);
 }
+
+
+/* ================================
+   v4 FIX: Navbar icons + butterfly flight transition
+   Added by Rawnak
+================================ */
+
+/* Replace broken emoji/search rendering with clean CSS icons */
+.nav-actions .icon-btn{
+  position:relative!important;
+  width:42px!important;
+  height:42px!important;
+  border:0!important;
+  background:transparent!important;
+  color:var(--text)!important;
+  font-size:0!important;
+  display:grid!important;
+  place-items:center!important;
+  flex:0 0 auto!important;
+  opacity:1!important;
+}
+
+.nav-actions .icon-btn:not(.cart)::before{
+  content:"";
+  width:19px;
+  height:19px;
+  border:2.2px solid var(--text);
+  border-radius:50%;
+  display:block;
+}
+
+.nav-actions .icon-btn:not(.cart)::after{
+  content:"";
+  position:absolute;
+  width:10px;
+  height:2.2px;
+  background:var(--text);
+  border-radius:999px;
+  transform:translate(12px,12px) rotate(45deg);
+  transform-origin:center;
+}
+
+.nav-actions .cart::before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:15px;
+  border:2.2px solid var(--text);
+  border-top:0;
+  border-radius:2px 2px 5px 5px;
+  transform:translateY(2px) skewX(-8deg);
+}
+
+.nav-actions .cart::after{
+  content:"";
+  position:absolute;
+  width:4.8px;
+  height:4.8px;
+  border-radius:50%;
+  background:var(--text);
+  transform:translate(-7px,14px);
+  box-shadow:14px 0 0 var(--text);
+}
+
+.nav-actions .cart span{
+  z-index:3!important;
+  right:-1px!important;
+  top:1px!important;
+  width:18px!important;
+  height:18px!important;
+  font-size:11px!important;
+  line-height:18px!important;
+  background:var(--rose)!important;
+  color:#fff!important;
+  border:2px solid var(--cream)!important;
+}
+
+/* Smooth butterfly exit animation after click */
+.butterfly-transition{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:0;
+  background:rgba(255,248,246,0);
+  transition:opacity .16s ease, background .42s ease;
+}
+
+.butterfly-transition.active{
+  opacity:1;
+  background:rgba(255,248,246,.18);
+  backdrop-filter:blur(1.3px);
+}
+
+.transition-center-glow{
+  position:fixed;
+  left:var(--click-x);
+  top:var(--click-y);
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  background:radial-gradient(circle,rgba(255,255,255,.96),rgba(245,174,198,.72),transparent 72%);
+  transform:translate(-50%,-50%) scale(0);
+  animation:centerGlow 1.1s ease-out forwards;
+}
+
+.leader-butterfly{
+  position:fixed;
+  left:var(--leader-x);
+  top:var(--leader-y);
+  width:116px;
+  height:96px;
+  z-index:10000;
+  transform:translate(-50%,-50%) rotate(-3deg) scale(1);
+  animation:leaderFlyOut 1.72s cubic-bezier(.16,.84,.18,1) forwards;
+  filter:drop-shadow(0 18px 26px rgba(156,61,86,.22));
+  pointer-events:none;
+}
+
+.swarm-butterfly{
+  position:fixed;
+  width:var(--size);
+  height:var(--size);
+  left:var(--start-x);
+  top:var(--start-y);
+  transform:translate(-50%,-50%) scale(.25) rotate(var(--start-r));
+  opacity:0;
+  animation:followLeaderFly 1.72s cubic-bezier(.16,.84,.22,1) forwards;
+  animation-delay:var(--delay);
+  filter:drop-shadow(0 12px 18px rgba(156,61,86,.2));
+}
+
+.leader-butterfly svg,
+.swarm-butterfly svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.leader-butterfly .mini-left,
+.swarm-butterfly .mini-left{
+  transform-origin:50% 55%;
+  animation:miniFlapLeft .30s ease-in-out infinite;
+}
+
+.leader-butterfly .mini-right,
+.swarm-butterfly .mini-right{
+  transform-origin:50% 55%;
+  animation:miniFlapRight .30s ease-in-out infinite;
+}
+
+.floating-butterfly-whatsapp.is-flying{
+  opacity:0!important;
+  transform:translateY(-10px) scale(.8)!important;
+  transition:opacity .18s ease, transform .18s ease;
+  pointer-events:none!important;
+}
+
+@keyframes centerGlow{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(0)}
+  35%{opacity:.86}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(12)}
+}
+
+@keyframes leaderFlyOut{
+  0%{opacity:1;transform:translate(-50%,-50%) rotate(-4deg) scale(1)}
+  20%{opacity:1;transform:translate(calc((var(--leader-mid-x) - var(--leader-x)) * .34), calc((var(--leader-mid-y) - var(--leader-y)) * .34)) rotate(-12deg) scale(1.08)}
+  58%{opacity:1;transform:translate(calc((var(--leader-mid-x) - var(--leader-x)) * 1), calc((var(--leader-mid-y) - var(--leader-y)) * 1)) rotate(-22deg) scale(1)}
+  100%{opacity:0;transform:translate(calc(var(--leader-end-x) - var(--leader-x)), calc(var(--leader-end-y) - var(--leader-y))) rotate(-42deg) scale(.72)}
+}
+
+@keyframes followLeaderFly{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.18) rotate(var(--start-r))}
+  12%{opacity:.95}
+  42%{opacity:.95;transform:translate(calc(var(--mid-x) - var(--start-x)), calc(var(--mid-y) - var(--start-y))) scale(.82) rotate(var(--mid-r))}
+  100%{opacity:0;transform:translate(calc(var(--end-x) - var(--start-x)), calc(var(--end-y) - var(--start-y))) scale(.52) rotate(var(--end-r))}
+}
+
+@keyframes miniFlapLeft{
+  0%,100%{transform:rotateY(0deg) rotate(-4deg)}
+  50%{transform:rotateY(58deg) rotate(-18deg) scaleX(.72)}
+}
+
+@keyframes miniFlapRight{
+  0%,100%{transform:rotateY(0deg) rotate(4deg)}
+  50%{transform:rotateY(-58deg) rotate(18deg) scaleX(.72)}
+}
+
+@media(max-width:720px){
+  .nav-actions .icon-btn{
+    width:34px!important;
+    height:34px!important;
+  }
+  .nav-actions .icon-btn:not(.cart)::before{
+    width:17px;
+    height:17px;
+    border-width:2px;
+  }
+  .nav-actions .icon-btn:not(.cart)::after{
+    width:8px;
+    height:2px;
+    transform:translate(10px,10px) rotate(45deg);
+  }
+  .nav-actions .cart::before{
+    width:20px;
+    height:14px;
+    border-width:2px;
+  }
+  .nav-actions .cart::after{
+    width:4.4px;
+    height:4.4px;
+    transform:translate(-6px,13px);
+    box-shadow:12px 0 0 var(--text);
+  }
+  .nav-actions .cart span{
+    width:17px!important;
+    height:17px!important;
+    font-size:10px!important;
+    right:-2px!important;
+    top:-1px!important;
+  }
+  .leader-butterfly{
+    width:82px;
+    height:70px;
+  }
+}
