@@ -197,71 +197,53 @@ bootstrapPublicSite();
 
 
 /* =========================================================
-   V12 PETALS LAYER FINAL FIX JS
-   يولّد ورق الشجر داخل الهيرو فوق الخلفية وورا المحتوى
+   V13 EXACT PETALS CODE JS
+   الكود مطابق للمنطق اللي بعتّه، داخل IIFE لمنع تعارض المتغيرات
 ========================================================= */
 
-(function zmordFinalPetalsLayerFix() {
-  function createPetals() {
-    const layer = document.querySelector('.petals-layer');
-    if (!layer) return;
+(function zmordExactPetals() {
+  const layer = document.querySelector('.petals-layer');
 
+  const petalAssets = [
+    'assets/petal-1.png',
+    'assets/petal-2.png',
+    'assets/petal-3.png',
+    'assets/petal-4.png',
+    'assets/petal-5.png',
+    'assets/petal-6.png',
+    'assets/petal-7.png',
+    'assets/petal-8.png'
+  ];
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (layer && !prefersReduced) {
     layer.innerHTML = '';
 
-    const petalAssets = [
-      'assets/petal-1.png',
-      'assets/petal-2.png',
-      'assets/petal-3.png',
-      'assets/petal-4.png',
-      'assets/petal-5.png',
-      'assets/petal-6.png',
-      'assets/petal-7.png',
-      'assets/petal-8.png'
-    ];
-
-    const isMobile = window.innerWidth <= 720;
-    const count = isMobile ? 14 : 26;
+    const count = window.innerWidth < 700 ? 7 : window.innerWidth < 1100 ? 11 : 14;
 
     for (let i = 0; i < count; i++) {
       const p = document.createElement('span');
-      p.className = 'petal';
 
-      if (i % 4 === 0) p.classList.add('blur');
-      if (i % 6 === 0) p.classList.add('front');
+      p.className = 'petal' +
+        (i % 4 === 0 ? ' blur' : '') +
+        (i % 6 === 0 ? ' front' : '');
 
-      const size = Math.round((isMobile ? 16 : 20) + Math.random() * (isMobile ? 18 : 26));
+      const size = Math.round(18 + Math.random() * 24 + (i % 6 === 0 ? 10 : 0));
+
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
-      p.style.left = `${Math.random() * 100}%`;
+      p.style.left = `${2 + Math.random() * 94}%`;
       p.style.backgroundImage = `url('${petalAssets[i % petalAssets.length]}')`;
-      p.style.animationDuration = `${8 + Math.random() * 9}s`;
-      p.style.animationDelay = `${Math.random() * -16}s`;
-      p.style.setProperty('--drift1', `${-85 + Math.random() * 170}px`);
-      p.style.setProperty('--drift2', `${-110 + Math.random() * 220}px`);
-      p.style.setProperty('--drift3', `${-75 + Math.random() * 150}px`);
-      p.style.setProperty('--op', `${isMobile ? 0.28 + Math.random() * 0.22 : 0.34 + Math.random() * 0.30}`);
+      p.style.animationDuration = `${10 + Math.random() * 9}s`;
+      p.style.animationDelay = `${Math.random() * -18}s`;
+
+      p.style.setProperty('--drift1', `${-70 + Math.random() * 140}px`);
+      p.style.setProperty('--drift2', `${-90 + Math.random() * 180}px`);
+      p.style.setProperty('--drift3', `${-60 + Math.random() * 120}px`);
+      p.style.setProperty('--op', `${0.26 + Math.random() * 0.34}`);
 
       layer.appendChild(p);
     }
   }
-
-  function boot() {
-    createPetals();
-
-    // إعادة محاولة بعد تحميل الصور والخلفيات
-    setTimeout(createPetals, 500);
-    setTimeout(createPetals, 1500);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
-
-  let resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(createPetals, 250);
-  });
 })();

@@ -401,8 +401,8 @@
 
 
 /* =========================================================
-   V12 PETALS LAYER FINAL FIX
-   الورق فوق الخلفية وورا الكلام والكيكة
+   V13 EXACT PETALS CODE
+   الكود مطابق لفكرة الورق اللي بعتها + تثبيت الطبقات
 ========================================================= */
 
 .hero {
@@ -411,117 +411,99 @@
   overflow: hidden !important;
 }
 
-/* الخلفية تحت الكل */
 .hero-bg {
-  position: absolute !important;
-  inset: 0 !important;
   z-index: 0 !important;
 }
 
-/* طبقة التدرج فوق الخلفية فقط */
 .hero::after {
   z-index: 1 !important;
   pointer-events: none !important;
 }
 
-/* الورق فوق الخلفية والتدرج، لكن تحت الكلام والكيكة */
 .petals-layer {
   position: absolute !important;
-  inset: 86px 0 0 0 !important;
-  width: 100% !important;
-  height: calc(100% - 86px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 116px !important;
+  bottom: 0 !important;
   z-index: 2 !important;
   pointer-events: none !important;
   overflow: hidden !important;
-  opacity: 1 !important;
   display: block !important;
 }
 
-/* الكلام والكيكة فوق الورق */
+.petal {
+  position: absolute !important;
+  top: -90px !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  opacity: .72 !important;
+  filter: drop-shadow(0 8px 10px rgba(177,79,99,.08)) !important;
+  animation: petalFall linear infinite !important;
+}
+
+.petal.blur {
+  filter: blur(1px) !important;
+  opacity: .42 !important;
+}
+
+.petal.front {
+  opacity: .45 !important;
+  filter: blur(.7px) !important;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0,-10vh,0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--op,.72);
+  }
+
+  40% {
+    transform: translate3d(var(--drift1,40px),38vh,0) rotate(130deg);
+  }
+
+  70% {
+    transform: translate3d(var(--drift2,-30px),72vh,0) rotate(240deg);
+  }
+
+  100% {
+    transform: translate3d(var(--drift3,25px),112vh,0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* fallback لو صور petal-1.png لحد petal-8.png مش موجودة */
+.petal::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 8% !important;
+  border-radius: 80% 0 80% 0 !important;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.90), transparent 25%),
+    linear-gradient(135deg, rgba(255,182,202,.70), rgba(213,111,137,.42)) !important;
+  transform: rotate(-18deg) !important;
+}
+
+.navbar,
+.hero-content,
+.trust-row {
+  z-index: 4 !important;
+}
+
 .hero-content,
 .hero-copy,
 .hero-stage,
 .trust-row {
   position: relative !important;
-  z-index: 4 !important;
 }
 
-/* الورقة نفسها */
-.petal {
-  position: absolute !important;
-  top: -80px !important;
-  display: block !important;
-  pointer-events: none !important;
-  background-size: contain !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  opacity: var(--op, .55) !important;
-  filter: drop-shadow(0 8px 14px rgba(177, 79, 99, .16)) !important;
-  animation: zmordPetalFallFinal linear infinite !important;
-  will-change: transform, opacity !important;
-}
-
-/* fallback ظاهر حتى لو صور petal-*.png مش موجودة */
-.petal::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 6% !important;
-  border-radius: 80% 0 80% 0 !important;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,.95), transparent 25%),
-    linear-gradient(135deg, rgba(255,182,202,.80), rgba(213,111,137,.50)) !important;
-  transform: rotate(-18deg) !important;
-}
-
-.petal::after {
-  content: "" !important;
-  position: absolute !important;
-  width: 45% !important;
-  height: 1px !important;
-  right: 20% !important;
-  top: 45% !important;
-  background: rgba(180, 80, 105, .24) !important;
-  transform: rotate(-25deg) !important;
-}
-
-.petal.blur {
-  opacity: .35 !important;
-  filter: blur(.7px) drop-shadow(0 8px 14px rgba(177, 79, 99, .12)) !important;
-}
-
-.petal.front {
-  opacity: .42 !important;
-  filter: blur(.4px) drop-shadow(0 8px 14px rgba(177, 79, 99, .13)) !important;
-}
-
-@keyframes zmordPetalFallFinal {
-  0% {
-    transform: translate3d(0, -12vh, 0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: var(--op, .55);
-  }
-  38% {
-    transform: translate3d(var(--drift1, 45px), 34vh, 0) rotate(130deg);
-  }
-  68% {
-    transform: translate3d(var(--drift2, -35px), 68vh, 0) rotate(245deg);
-  }
-  100% {
-    transform: translate3d(var(--drift3, 30px), 116vh, 0) rotate(390deg);
-    opacity: 0;
-  }
-}
-
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .petals-layer {
-    inset: 64px 0 0 0 !important;
-    height: calc(100% - 64px) !important;
-    z-index: 2 !important;
-  }
-
-  .petal {
-    opacity: var(--op, .45) !important;
+    top: 84px !important;
   }
 }
