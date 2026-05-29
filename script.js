@@ -194,3 +194,82 @@ bootstrapPublicSite();
     butterflyLink.addEventListener('click', (event) => runButterflyTransition(event, butterflyLink), true);
   });
 })();
+
+
+/* =========================================================
+   V10 PETALS FINAL FIX JS
+   Regenerates falling petals after all page/bootstrap code.
+   Does not touch the butterfly click animation.
+========================================================= */
+(function zmordFinalPetals(){
+  const petalAssets = [
+    'assets/petal-1.png',
+    'assets/petal-2.png',
+    'assets/petal-3.png',
+    'assets/petal-4.png',
+    'assets/petal-5.png',
+    'assets/petal-6.png',
+    'assets/petal-7.png',
+    'assets/petal-8.png'
+  ];
+
+  function rand(min, max) {
+    return min + Math.random() * (max - min);
+  }
+
+  function buildPetals() {
+    const layer = document.querySelector('.petals-layer');
+    if (!layer) return;
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    layer.innerHTML = '';
+
+    const isMobile = window.innerWidth <= 720;
+    const count = isMobile ? 20 : 34;
+
+    for (let i = 0; i < count; i++) {
+      const petal = document.createElement('span');
+      petal.className = 'zmord-petal';
+
+      if (i % 4 === 0) petal.classList.add('petal-soft');
+      if (i % 7 === 0) petal.classList.add('petal-near');
+
+      const size = Math.round(rand(isMobile ? 16 : 18, isMobile ? 34 : 44));
+      const duration = rand(isMobile ? 8.5 : 9.5, isMobile ? 15 : 18);
+      const delay = -rand(0, duration);
+      const x = rand(-4, 98);
+
+      petal.style.setProperty('--petal-img', `url('${petalAssets[i % petalAssets.length]}')`);
+      petal.style.setProperty('--x', `${x}%`);
+      petal.style.setProperty('--size', `${size}px`);
+      petal.style.setProperty('--dur', `${duration}s`);
+      petal.style.setProperty('--delay', `${delay}s`);
+      petal.style.setProperty('--op', `${rand(isMobile ? .34 : .38, isMobile ? .64 : .72).toFixed(2)}`);
+      petal.style.setProperty('--blur', `${i % 5 === 0 ? rand(.4, 1.2).toFixed(1) : 0}px`);
+      petal.style.setProperty('--scale', `${rand(.82, 1.18).toFixed(2)}`);
+      petal.style.setProperty('--start-rot', `${Math.round(rand(0, 360))}deg`);
+      petal.style.setProperty('--drift1', `${Math.round(rand(-110, 120))}px`);
+      petal.style.setProperty('--drift2', `${Math.round(rand(-140, 150))}px`);
+      petal.style.setProperty('--drift3', `${Math.round(rand(-100, 120))}px`);
+
+      layer.appendChild(petal);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildPetals);
+  } else {
+    buildPetals();
+  }
+
+  // Rebuild once after dynamic content and Firebase/local data bootstrap finishes.
+  window.addEventListener('load', () => setTimeout(buildPetals, 250));
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildPetals, 300);
+  });
+})();

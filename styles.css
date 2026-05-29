@@ -673,3 +673,130 @@ footer {
     width: min(245px, 100%) !important;
   }
 }
+
+
+/* =========================================================
+   V10 PETALS FINAL FIX
+   Falling petals only. Safe to append without touching navbar,
+   hero mobile layout, cake centering, or butterfly animation.
+========================================================= */
+
+.hero {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+}
+
+.hero-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+.hero::after {
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* Petals are above the background/overlay and behind all hero content */
+.petals-layer {
+  position: absolute !important;
+  inset: 86px 0 0 0 !important;
+  width: 100% !important;
+  height: calc(100% - 86px) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  contain: layout paint !important;
+}
+
+.hero-content,
+.hero-copy,
+.hero-stage,
+.light-ring,
+.cake-img,
+.trust-row {
+  position: relative !important;
+  z-index: 4 !important;
+}
+
+.zmord-petal {
+  position: absolute !important;
+  top: -12vh !important;
+  left: var(--x, 50%) !important;
+  width: var(--size, 28px) !important;
+  height: var(--size, 28px) !important;
+  background-image: var(--petal-img) !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  opacity: var(--op, .62) !important;
+  filter: blur(var(--blur, 0px)) drop-shadow(0 8px 10px rgba(177,79,99,.10)) !important;
+  transform: translate3d(0, -12vh, 0) rotate(var(--start-rot, 0deg)) !important;
+  animation: zmordPetalFall var(--dur, 12s) linear var(--delay, 0s) infinite !important;
+  will-change: transform, opacity !important;
+}
+
+/* Fallback petal shape appears even if the PNG asset fails */
+.zmord-petal::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 14% !important;
+  border-radius: 80% 0 80% 0 !important;
+  background:
+    radial-gradient(circle at 28% 28%, rgba(255,255,255,.85), transparent 24%),
+    linear-gradient(135deg, rgba(255,182,202,.52), rgba(213,111,137,.28)) !important;
+  transform: rotate(-18deg) !important;
+  z-index: -1 !important;
+}
+
+.zmord-petal.petal-soft {
+  opacity: var(--op, .42) !important;
+  filter: blur(.9px) drop-shadow(0 8px 10px rgba(177,79,99,.08)) !important;
+}
+
+.zmord-petal.petal-near {
+  opacity: var(--op, .68) !important;
+  filter: blur(.25px) drop-shadow(0 10px 12px rgba(177,79,99,.12)) !important;
+}
+
+@keyframes zmordPetalFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -14vh, 0) rotate(var(--start-rot, 0deg)) scale(var(--scale, 1));
+  }
+  8% {
+    opacity: var(--op, .62);
+  }
+  32% {
+    transform: translate3d(var(--drift1, 70px), 30vh, 0) rotate(calc(var(--start-rot, 0deg) + 130deg)) scale(var(--scale, 1));
+  }
+  64% {
+    transform: translate3d(var(--drift2, -60px), 64vh, 0) rotate(calc(var(--start-rot, 0deg) + 250deg)) scale(var(--scale, 1));
+  }
+  92% {
+    opacity: var(--op, .62);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift3, 40px), 112vh, 0) rotate(calc(var(--start-rot, 0deg) + 390deg)) scale(var(--scale, 1));
+  }
+}
+
+@media (max-width: 720px) {
+  .petals-layer {
+    inset: 64px 0 0 0 !important;
+    height: calc(100% - 64px) !important;
+  }
+
+  .zmord-petal {
+    opacity: var(--op, .50) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zmord-petal {
+    animation: none !important;
+    display: none !important;
+  }
+}
