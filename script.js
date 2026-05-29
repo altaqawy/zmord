@@ -197,79 +197,71 @@ bootstrapPublicSite();
 
 
 /* =========================================================
-   V10 PETALS FINAL FIX JS
-   Regenerates falling petals after all page/bootstrap code.
-   Does not touch the butterfly click animation.
+   V12 PETALS LAYER FINAL FIX JS
+   يولّد ورق الشجر داخل الهيرو فوق الخلفية وورا المحتوى
 ========================================================= */
-(function zmordFinalPetals(){
-  const petalAssets = [
-    'assets/petal-1.png',
-    'assets/petal-2.png',
-    'assets/petal-3.png',
-    'assets/petal-4.png',
-    'assets/petal-5.png',
-    'assets/petal-6.png',
-    'assets/petal-7.png',
-    'assets/petal-8.png'
-  ];
 
-  function rand(min, max) {
-    return min + Math.random() * (max - min);
-  }
-
-  function buildPetals() {
+(function zmordFinalPetalsLayerFix() {
+  function createPetals() {
     const layer = document.querySelector('.petals-layer');
     if (!layer) return;
 
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
-
     layer.innerHTML = '';
 
+    const petalAssets = [
+      'assets/petal-1.png',
+      'assets/petal-2.png',
+      'assets/petal-3.png',
+      'assets/petal-4.png',
+      'assets/petal-5.png',
+      'assets/petal-6.png',
+      'assets/petal-7.png',
+      'assets/petal-8.png'
+    ];
+
     const isMobile = window.innerWidth <= 720;
-    const count = isMobile ? 20 : 34;
+    const count = isMobile ? 14 : 26;
 
     for (let i = 0; i < count; i++) {
-      const petal = document.createElement('span');
-      petal.className = 'zmord-petal';
+      const p = document.createElement('span');
+      p.className = 'petal';
 
-      if (i % 4 === 0) petal.classList.add('petal-soft');
-      if (i % 7 === 0) petal.classList.add('petal-near');
+      if (i % 4 === 0) p.classList.add('blur');
+      if (i % 6 === 0) p.classList.add('front');
 
-      const size = Math.round(rand(isMobile ? 16 : 18, isMobile ? 34 : 44));
-      const duration = rand(isMobile ? 8.5 : 9.5, isMobile ? 15 : 18);
-      const delay = -rand(0, duration);
-      const x = rand(-4, 98);
+      const size = Math.round((isMobile ? 16 : 20) + Math.random() * (isMobile ? 18 : 26));
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.left = `${Math.random() * 100}%`;
+      p.style.backgroundImage = `url('${petalAssets[i % petalAssets.length]}')`;
+      p.style.animationDuration = `${8 + Math.random() * 9}s`;
+      p.style.animationDelay = `${Math.random() * -16}s`;
+      p.style.setProperty('--drift1', `${-85 + Math.random() * 170}px`);
+      p.style.setProperty('--drift2', `${-110 + Math.random() * 220}px`);
+      p.style.setProperty('--drift3', `${-75 + Math.random() * 150}px`);
+      p.style.setProperty('--op', `${isMobile ? 0.28 + Math.random() * 0.22 : 0.34 + Math.random() * 0.30}`);
 
-      petal.style.setProperty('--petal-img', `url('${petalAssets[i % petalAssets.length]}')`);
-      petal.style.setProperty('--x', `${x}%`);
-      petal.style.setProperty('--size', `${size}px`);
-      petal.style.setProperty('--dur', `${duration}s`);
-      petal.style.setProperty('--delay', `${delay}s`);
-      petal.style.setProperty('--op', `${rand(isMobile ? .34 : .38, isMobile ? .64 : .72).toFixed(2)}`);
-      petal.style.setProperty('--blur', `${i % 5 === 0 ? rand(.4, 1.2).toFixed(1) : 0}px`);
-      petal.style.setProperty('--scale', `${rand(.82, 1.18).toFixed(2)}`);
-      petal.style.setProperty('--start-rot', `${Math.round(rand(0, 360))}deg`);
-      petal.style.setProperty('--drift1', `${Math.round(rand(-110, 120))}px`);
-      petal.style.setProperty('--drift2', `${Math.round(rand(-140, 150))}px`);
-      petal.style.setProperty('--drift3', `${Math.round(rand(-100, 120))}px`);
-
-      layer.appendChild(petal);
+      layer.appendChild(p);
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildPetals);
-  } else {
-    buildPetals();
+  function boot() {
+    createPetals();
+
+    // إعادة محاولة بعد تحميل الصور والخلفيات
+    setTimeout(createPetals, 500);
+    setTimeout(createPetals, 1500);
   }
 
-  // Rebuild once after dynamic content and Firebase/local data bootstrap finishes.
-  window.addEventListener('load', () => setTimeout(buildPetals, 250));
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 
   let resizeTimer;
-  window.addEventListener('resize', () => {
+  window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(buildPetals, 300);
+    resizeTimer = setTimeout(createPetals, 250);
   });
 })();

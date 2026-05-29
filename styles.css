@@ -401,464 +401,127 @@
 
 
 /* =========================================================
-   V9 MOBILE WIDTH FIX
-   Fixes mobile horizontal overflow / black side gap.
-   Put this block at the very end of styles.css.
+   V12 PETALS LAYER FINAL FIX
+   الورق فوق الخلفية وورا الكلام والكيكة
 ========================================================= */
 
-html,
-body {
+.hero {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+}
+
+/* الخلفية تحت الكل */
+.hero-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+/* طبقة التدرج فوق الخلفية فقط */
+.hero::after {
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* الورق فوق الخلفية والتدرج، لكن تحت الكلام والكيكة */
+.petals-layer {
+  position: absolute !important;
+  inset: 86px 0 0 0 !important;
   width: 100% !important;
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  background: var(--cream) !important;
+  height: calc(100% - 86px) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  opacity: 1 !important;
+  display: block !important;
 }
 
-body {
-  min-width: 0 !important;
+/* الكلام والكيكة فوق الورق */
+.hero-content,
+.hero-copy,
+.hero-stage,
+.trust-row {
+  position: relative !important;
+  z-index: 4 !important;
 }
 
-.page-shell,
-.products-page-shell,
-main,
-section,
-header,
-footer {
-  max-width: 100vw !important;
+/* الورقة نفسها */
+.petal {
+  position: absolute !important;
+  top: -80px !important;
+  display: block !important;
+  pointer-events: none !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  opacity: var(--op, .55) !important;
+  filter: drop-shadow(0 8px 14px rgba(177, 79, 99, .16)) !important;
+  animation: zmordPetalFallFinal linear infinite !important;
+  will-change: transform, opacity !important;
 }
 
-.page-shell,
-.products-page-shell {
-  width: 100% !important;
-  overflow-x: hidden !important;
-  background: var(--cream) !important;
+/* fallback ظاهر حتى لو صور petal-*.png مش موجودة */
+.petal::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 6% !important;
+  border-radius: 80% 0 80% 0 !important;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.95), transparent 25%),
+    linear-gradient(135deg, rgba(255,182,202,.80), rgba(213,111,137,.50)) !important;
+  transform: rotate(-18deg) !important;
 }
 
-.navbar,
-.hero,
-.section,
-.custom-banner,
-.footer,
-.products-hero,
-.filters-bar,
-.full-products {
-  width: 100% !important;
-  max-width: 100vw !important;
+.petal::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 45% !important;
+  height: 1px !important;
+  right: 20% !important;
+  top: 45% !important;
+  background: rgba(180, 80, 105, .24) !important;
+  transform: rotate(-25deg) !important;
+}
+
+.petal.blur {
+  opacity: .35 !important;
+  filter: blur(.7px) drop-shadow(0 8px 14px rgba(177, 79, 99, .12)) !important;
+}
+
+.petal.front {
+  opacity: .42 !important;
+  filter: blur(.4px) drop-shadow(0 8px 14px rgba(177, 79, 99, .13)) !important;
+}
+
+@keyframes zmordPetalFallFinal {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--op, .55);
+  }
+  38% {
+    transform: translate3d(var(--drift1, 45px), 34vh, 0) rotate(130deg);
+  }
+  68% {
+    transform: translate3d(var(--drift2, -35px), 68vh, 0) rotate(245deg);
+  }
+  100% {
+    transform: translate3d(var(--drift3, 30px), 116vh, 0) rotate(390deg);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 720px) {
-  .navbar {
-    min-width: 0 !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    padding: 0 16px !important;
-    gap: 12px !important;
-    justify-content: space-between !important;
-    overflow: hidden !important;
-  }
-
-  .brand {
-    width: 138px !important;
-    min-width: 118px !important;
-    max-width: 42vw !important;
-    flex: 0 1 auto !important;
-  }
-
-  .nav-actions {
-    flex: 0 0 auto !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    margin-inline-start: auto !important;
-  }
-
-  .icon-btn {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    padding: 0 !important;
-  }
-
-  .icon-btn svg {
-    width: 23px !important;
-    height: 23px !important;
-  }
-
-  .icon-btn.cart svg {
-    width: 26px !important;
-    height: 26px !important;
-  }
-
-  .menu-btn {
-    width: 34px !important;
-    min-width: 34px !important;
-    padding: 0 !important;
-    display: grid !important;
-    place-items: center !important;
-    color: var(--text) !important;
-  }
-
-  .hero {
-    width: 100% !important;
-    max-width: 100vw !important;
-    min-height: auto !important;
-    padding: 14px 18px 26px !important;
-    overflow: hidden !important;
-    background: linear-gradient(180deg, #fff9f7 0%, #fff6f4 58%, #f7cdd3 100%) !important;
-  }
-
-  .hero::after {
-    background: linear-gradient(180deg, rgba(255,250,248,.88), rgba(255,248,246,.58) 55%, rgba(246,204,211,.22)) !important;
-  }
-
-  .hero-content {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
-
-  .hero-copy {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .eyebrow {
-    font-size: 11px !important;
-    letter-spacing: .26em !important;
-    white-space: normal !important;
-  }
-
-  .hero h1 {
-    max-width: 100% !important;
-    width: 100% !important;
-    font-size: clamp(38px, 12vw, 50px) !important;
-    line-height: 1.02 !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-  }
-
-  .subtext {
-    max-width: 330px !important;
-    font-size: 14px !important;
-  }
-
-  .hero-buttons {
-    max-width: 100% !important;
-    gap: 10px !important;
-  }
-
-  .hero-buttons .btn {
-    min-width: 0 !important;
-    padding: 12px 18px !important;
-  }
-
-  .hero-stage {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 310px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: visible !important;
-  }
-
-  .cake-img {
-    width: min(112vw, 430px) !important;
-    max-width: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    transform: translateX(0) !important;
-  }
-
-  .light-ring {
-    width: min(70vw, 280px) !important;
-    left: 50% !important;
-    top: 42% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-
-  .trust-row {
-    width: calc(100vw - 36px) !important;
-    max-width: calc(100vw - 36px) !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-    overflow: hidden !important;
-  }
-
-  .trust-row article {
-    min-width: 0 !important;
-  }
-
-  .trust-row strong,
-  .trust-row small {
-    overflow-wrap: break-word !important;
-    word-break: normal !important;
-  }
-
-  .section,
-  .products-hero,
-  .filters-bar,
-  .full-products {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-    overflow-x: hidden !important;
-  }
-
-  .product-grid,
-  .all-grid,
-  .occasion-grid,
-  .branch-grid {
-    max-width: 100% !important;
-    overflow: hidden !important;
-  }
-
-  .footer {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-    overflow: hidden !important;
-  }
-
-  .custom-banner {
-    width: calc(100vw - 36px) !important;
-    max-width: calc(100vw - 36px) !important;
-    margin-left: 18px !important;
-    margin-right: 18px !important;
-    overflow: hidden !important;
-  }
-
-  .floating-butterfly-whatsapp {
-    right: 8px !important;
-    bottom: 18px !important;
-    width: 86px !important;
-    height: 78px !important;
-    max-width: 86px !important;
-    overflow: visible !important;
-  }
-
-  .butterfly-svg {
-    width: 82px !important;
-    height: 70px !important;
-  }
-
   .petals-layer {
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-  }
-}
-
-@media (max-width: 390px) {
-  .hero h1 {
-    font-size: clamp(33px, 11.2vw, 42px) !important;
+    inset: 64px 0 0 0 !important;
+    height: calc(100% - 64px) !important;
+    z-index: 2 !important;
   }
 
-  .brand {
-    width: 126px !important;
-  }
-
-  .nav-actions {
-    gap: 5px !important;
-  }
-
-  .hero-buttons {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-
-  .hero-buttons .btn {
-    width: min(245px, 100%) !important;
-  }
-}
-
-
-/* =========================================================
-   V11 HERO FINAL FIX
-   Fix desktop/mobile hero position after width fixes.
-   Keep this block at the very end of styles.css.
-========================================================= */
-
-/* Desktop hero: move content up and keep cake centered */
-@media (min-width: 721px) {
-  .hero {
-    min-height: calc(100svh - 86px) !important;
-    max-height: 760px !important;
-    padding: 0 clamp(18px, 5vw, 92px) 22px !important;
-    display: grid !important;
-    grid-template-rows: 1fr auto !important;
-    align-items: stretch !important;
-    overflow: hidden !important;
-  }
-
-  .hero-content {
-    width: 100% !important;
-    min-height: 0 !important;
-    height: auto !important;
-    display: grid !important;
-    grid-template-columns: minmax(390px, 38%) minmax(520px, 62%) !important;
-    align-items: start !important;
-    gap: 20px !important;
-    padding-top: clamp(52px, 8vh, 105px) !important;
-  }
-
-  .hero-copy {
-    align-self: start !important;
-    padding-top: 0 !important;
-    transform: translateY(0) !important;
-  }
-
-  .hero h1 {
-    font-size: clamp(58px, 4.35vw, 78px) !important;
-    line-height: .94 !important;
-    max-width: 620px !important;
-  }
-
-  .subtext {
-    margin-top: 22px !important;
-    margin-bottom: 24px !important;
-  }
-
-  .hero-stage {
-    align-self: start !important;
-    width: 100% !important;
-    min-height: clamp(420px, 56vh, 560px) !important;
-    height: clamp(420px, 56vh, 560px) !important;
-    display: grid !important;
-    place-items: center !important;
-    transform: translateY(-8px) !important;
-    overflow: visible !important;
-  }
-
-  .cake-img {
-    width: clamp(520px, 45vw, 675px) !important;
-    max-width: none !important;
-    margin: 0 auto !important;
-  }
-
-  .light-ring {
-    width: clamp(390px, 36vw, 540px) !important;
-    transform: translateY(-7%) !important;
-  }
-
-  .trust-row {
-    align-self: end !important;
-    margin-top: 0 !important;
-    padding-bottom: 8px !important;
-  }
-}
-
-/* Laptop height safety */
-@media (min-width: 721px) and (max-height: 760px) {
-  .hero-content {
-    padding-top: clamp(36px, 6vh, 68px) !important;
-  }
-
-  .hero h1 {
-    font-size: clamp(50px, 4vw, 68px) !important;
-  }
-
-  .hero-stage {
-    min-height: clamp(360px, 52vh, 490px) !important;
-    height: clamp(360px, 52vh, 490px) !important;
-  }
-
-  .cake-img {
-    width: clamp(470px, 42vw, 610px) !important;
-  }
-
-  .trust-row {
-    padding-bottom: 0 !important;
-  }
-}
-
-/* Mobile hero: balanced spacing and centered cake */
-@media (max-width: 720px) {
-  .hero {
-    padding: 12px 10px 0 !important;
-    min-height: auto !important;
-    overflow: hidden !important;
-  }
-
-  .hero-copy {
-    padding: 0 8px !important;
-  }
-
-  .eyebrow {
-    margin-bottom: 10px !important;
-  }
-
-  .hero h1 {
-    font-size: clamp(34px, 10.4vw, 44px) !important;
-    line-height: 1.02 !important;
-    letter-spacing: .005em !important;
-    max-width: 360px !important;
-  }
-
-  .subtext {
-    margin: 14px 0 14px !important;
-    max-width: 330px !important;
-    font-size: 13px !important;
-    line-height: 1.55 !important;
-  }
-
-  .hero-buttons {
-    gap: 10px !important;
-    margin-bottom: 8px !important;
-  }
-
-  .hero-buttons .btn {
-    padding: 11px 17px !important;
-    min-width: 0 !important;
-  }
-
-  .hero-stage {
-    min-height: 280px !important;
-    height: 280px !important;
-    margin-top: 4px !important;
-    overflow: visible !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  .cake-img {
-    width: min(106vw, 420px) !important;
-    max-width: none !important;
-    margin: 0 auto !important;
-  }
-
-  .light-ring {
-    width: min(68vw, 270px) !important;
-    left: 50% !important;
-    top: 45% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-
-  .trust-row {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 8px 0 10px !important;
-    margin: 0 !important;
-    background: rgba(255,248,246,.48) !important;
-    backdrop-filter: blur(4px) !important;
-  }
-}
-
-/* Smaller phones */
-@media (max-width: 390px) {
-  .hero h1 {
-    font-size: clamp(31px, 10.2vw, 38px) !important;
-  }
-
-  .hero-stage {
-    min-height: 255px !important;
-    height: 255px !important;
-  }
-
-  .cake-img {
-    width: min(108vw, 385px) !important;
+  .petal {
+    opacity: var(--op, .45) !important;
   }
 }
